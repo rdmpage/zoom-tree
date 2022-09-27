@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="228px">
+  <style type="text/css"><![CDATA[path {
+		stroke: #000;
+		stroke-width:1;
+		stroke-linecap:square;
+		fill: none;
+	}
+	text {
+		alignment-baseline:middle;
+		font-family:sans-serif;
+		font-size: 8.4px;
+	}
+	/*
+	text:hover {
+		font-weight:bold;
+		}
+	*/
+	circle {
+		stroke: black;
+		fill:white;
+		/*opacity:0.2;*/
+		}
+	circle:hover {opacity:1.0; }
+	rect {
+		fill:white;
+		stroke: black;
+	}]]></style>
+  <g id="viewport">
+    <g id="tree" display="inline">
+      <path vector-effect="non-scaling-stroke" d="M 48.654168794223 0 19.148004960245 0"/>
+      <polygon vector-effect="non-scaling-stroke" fill="#999999" stroke="none" points="48.654168794223,0 48.654168794223,-12 48.654168794223,12 "/>
+      <text x="57.054168794223" y="0" text-anchor="start">Bilateria</text>
+      <path vector-effect="non-scaling-stroke" d="M 19.148004960245 12 0 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 19.148004960245 0 19.148004960245 36"/>
+      <rect vector-effect="non-scaling-stroke" x="19.148004960245" y="-12" width="125.30454445984" height="72" opacity="0.1" style="fill:rgb(0,0,255);"/>
+      <text x="27.548004960245" y="12" text-anchor="start">1 *</text>
+      <path vector-effect="non-scaling-stroke" d="M 77.485593405792 24 58.129695820264 24"/>
+      <polygon vector-effect="non-scaling-stroke" fill="#999999" stroke="none" points="77.485593405792,24 144.45254942009,12 144.45254942009,36 "/>
+      <text x="152.85254942009" y="24" text-anchor="start">Anopheles</text>
+      <path vector-effect="non-scaling-stroke" d="M 58.129695820264 36 19.148004960245 36"/>
+      <path vector-effect="non-scaling-stroke" d="M 58.129695820264 24 58.129695820264 48"/>
+      <text x="66.529695820264" y="36" text-anchor="start">2</text>
+      <path vector-effect="non-scaling-stroke" d="M 78.236924648041 48 58.129695820264 48"/>
+      <polygon vector-effect="non-scaling-stroke" fill="#999999" stroke="none" points="78.236924648041,48 102.49471150339,36 102.49471150339,60 "/>
+      <text x="110.89471150339" y="48" text-anchor="start">Culicinae</text>
+      <path vector-effect="non-scaling-stroke" d="M 0 60 0 60"/>
+      <path vector-effect="non-scaling-stroke" d="M 0 12 0 84"/>
+      <text x="8.4" y="60" text-anchor="start">1</text>
+      <path vector-effect="non-scaling-stroke" d="M 44.040411408564 72 44.040411408564 72"/>
+      <polygon vector-effect="non-scaling-stroke" fill="#999999" stroke="none" points="44.040411408564,72 186.59639652783,60 186.59639652783,84 "/>
+      <text x="194.99639652783" y="72" text-anchor="start">Spiralia</text>
+      <path vector-effect="non-scaling-stroke" d="M 44.040411408564 84 0 84"/>
+      <path vector-effect="non-scaling-stroke" d="M 44.040411408564 72 44.040411408564 108"/>
+      <rect vector-effect="non-scaling-stroke" x="44.040411408564" y="60" width="355.95958859144" height="72" opacity="0.1" style="fill:rgb(0,0,255);"/>
+      <text x="52.440411408564" y="84" text-anchor="start">1 *</text>
+      <path vector-effect="non-scaling-stroke" d="M 75.858924793931 96 54.71952731782 96"/>
+      <polygon vector-effect="non-scaling-stroke" fill="#999999" stroke="none" points="75.858924793931,96 400,84 400,108 "/>
+      <text x="408.4" y="96" text-anchor="start">Protostomia</text>
+      <path vector-effect="non-scaling-stroke" d="M 54.71952731782 108 44.040411408564 108"/>
+      <path vector-effect="non-scaling-stroke" d="M 54.71952731782 96 54.71952731782 120"/>
+      <text x="63.11952731782" y="108" text-anchor="start">2</text>
+      <path vector-effect="non-scaling-stroke" d="M 163.22488875921 120 54.71952731782 120"/>
+      <polygon vector-effect="non-scaling-stroke" fill="#999999" stroke="none" points="163.22488875921,120 188.9525129477,108 188.9525129477,132 "/>
+      <text x="197.3525129477" y="120" text-anchor="start">Hofstenia miamia strain MS-H3</text>
+      <path vector-effect="non-scaling-stroke" d="M 0 132 0 132"/>
+      <path vector-effect="non-scaling-stroke" d="M 0 60 0 180"/>
+      <text x="8.4" y="132" text-anchor="start">1</text>
+      <path vector-effect="non-scaling-stroke" d="M 8.7205485447516 144 5.6094536435918 144"/>
+      <polygon vector-effect="non-scaling-stroke" fill="#999999" stroke="none" points="8.7205485447516,144 290.7287183602,132 290.7287183602,156 "/>
+      <text x="299.1287183602" y="144" text-anchor="start">Eumetazoa</text>
+      <path vector-effect="non-scaling-stroke" d="M 5.6094536435918 156 0 156"/>
+      <path vector-effect="non-scaling-stroke" d="M 5.6094536435918 144 5.6094536435918 168"/>
+      <text x="14.009453643592" y="156" text-anchor="start">1</text>
+      <path vector-effect="non-scaling-stroke" d="M 12.623094317602 168 5.6094536435918 168"/>
+      <polygon vector-effect="non-scaling-stroke" fill="#999999" stroke="none" points="12.623094317602,168 91.538405427092,156 91.538405427092,180 "/>
+      <text x="99.938405427092" y="168" text-anchor="start">Eumetazoa</text>
+      <path vector-effect="non-scaling-stroke" d="M 0 180 0 180"/>
+      <path vector-effect="non-scaling-stroke" d="M 0 156 0 192"/>
+      <text x="8.4" y="180" text-anchor="start">1</text>
+      <path vector-effect="non-scaling-stroke" d="M 26.351302064337 192 0 192"/>
+      <polygon vector-effect="non-scaling-stroke" fill="#999999" stroke="none" points="26.351302064337,192 82.113939747611,180 82.113939747611,204 "/>
+      <text x="90.513939747611" y="192" text-anchor="start">Eumetazoa</text>
+      <path vector-effect="non-scaling-stroke" d="M 0 132 0 132"/>
+      <text x="8.4" y="204" text-anchor="start">1</text>
+    </g>
+  </g>
+</svg>
