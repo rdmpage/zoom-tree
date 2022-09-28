@@ -1,6 +1,6 @@
 <?php
 
-// Generate tree images
+// Generate whole tree images at different zoom levels
 
 error_reporting(E_ALL);
 
@@ -45,84 +45,6 @@ function add_children_to_subtree(&$subtree, $q, $is_root = false)
 	
 }
 
-//----------------------------------------------------------------------------------------
-// Get node "heights" and store in x coordinate. Root has x=0, leaf furthest from root
-// has x = limit
-function get_node_heights($t, $limit = 400)
-{
-	$max_path_length = 0.0;		
-	$t->GetRoot()->SetAttribute('path_length', $t->GetRoot()->GetAttribute('edge_length'));
-
-	// Get path lengths
-	$n = new PreorderIterator ($t->getRoot());
-	$q = $n->Begin();
-	while ($q != NULL)
-	{			
-		$d = $q->GetAttribute('edge_length');
-		
-		// Avoid negative branch lengths
-		if ($d < 0.00001)
-		{
-			$d = 0.0;
-		}
-		
-		if ($q != $t->GetRoot())
-			$q->SetAttribute('path_length', $q->GetAncestor()->GetAttribute('path_length') + $d);
-
-		$max_path_length = max($max_path_length, $q->GetAttribute('path_length'));
-		$q = $n->Next();
-	}
-	
-	// scale to drawing size
-	$n = new NodeIterator ($t->getRoot());
-	
-	$q = $n->Begin();
-	while ($q != NULL)
-	{
-		$pt = array();
-		$pt['y'] = 0;
-		$pt['x'] = ($q->GetAttribute('path_length') / $max_path_length) * $limit;
-		
-		$q->SetAttribute('xy', $pt);
-
-		$q = $n->Next();
-	}
-
-}
-
-
-//----------------------------------------------------------------------------------------
-// Get max heights of subtree rooted at each node. This enables us to draw
-// "closed" subtrees as shapes that cover the full range of node heights
-function get_max_subtree_height($t)
-{
-	$n = new PreorderIterator ($t->GetRoot());
-	$q = $n->Begin();
-	while ($q != NULL)
-	{	
-		$pt = $q->GetAttribute('xy');		
-		$x = $pt['x'];
-		$q->SetAttribute('max_x', $x);
-
-		$q = $n->Next();
-	}
-
-	// update each node with max_x of its descendants
-	{
-		$n = new NodeIterator ($t->GetRoot());
-		$q = $n->Begin();
-		while ($q != NULL)
-		{	
-			$anc = $q->GetAncestor();
-			if ($anc)
-			{
-				$anc->SetAttribute('max_x', max($anc->GetAttribute('max_x'), $q->GetAttribute('max_x')));
-			}
-
-			$q = $n->Next();
-		}
-	}
-}
 
 
 

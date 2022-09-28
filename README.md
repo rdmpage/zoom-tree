@@ -11,12 +11,12 @@ Ideas
 
 ## Draw
 
-View state is ordered list of nodes and pen/closed state, draw that 
+View state is ordered list of nodes and open/closed state, draw that 
 - to do: think about maintaining relative position in a scrolled view 
 
 ## Current view
 
-Current view is current tree, pq, and history(?)
+Current view is current tree, priority queue, and history(?)
 
 ## History
 
@@ -25,11 +25,11 @@ List of nodes opened/closed
 ## Zoom whole tree
 
 1. Compute how many rows to existing view 
-2. Visit each unopened leaf node, add children to pq, continue to resolve until number of rows reached. Each node popped from pq is added to history
+2. Visit each unopened leaf node, add children to priority queue, continue to resolve until number of rows reached. Each node popped from priority queue is added to history
 
 ## Zoom one node
 
-1. Add children of node to pq, continue to resolve by adding descendants to pq until zoom size reached.
+1. Add children of node to priority queue, continue to resolve by adding descendants to priority queue until zoom size reached.
 
 ## User has target taxon
 
@@ -38,7 +38,7 @@ List of nodes opened/closed
 
 ## Minimise tree
 
-Reverse opening of nodes (does this correspond to rewinding pq)?
+Reverse opening of nodes (does this correspond to rewinding priority queue)?
 
 ## Close node
 
@@ -53,7 +53,6 @@ Reverse opening of nodes (does this correspond to rewinding pq)?
 ### Scoring nodes
 
 Chen et al. 2009 provide a scoring function based on “information content”.
-
 
 ### Taxonomic labels
 

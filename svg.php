@@ -97,7 +97,10 @@ class SVGPort extends Port
 		//$polygon->setAttribute('fill', "none");
 		//$polygon->setAttribute('stroke', "#000000");
 		
-		$polygon->setAttribute('stroke', "none");
+		//$polygon->setAttribute('stroke', "none");
+		
+		$polygon->setAttribute('fill', "#000");
+		$polygon->setAttribute('stroke', 1);
 		
 		//$polygon->setAttribute('opacity', "0.5");
 		
@@ -229,10 +232,10 @@ class SVGPort extends Port
 	*/
 	circle {
 		stroke: black;
-		fill:white;
+		fill:black;
 		/*opacity:0.2;*/
 		}
-	circle:hover {opacity:1.0; }
+	/*circle:hover {opacity:1.0; }*/
 	rect {
 		fill:white;
 		stroke: black;

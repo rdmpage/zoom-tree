@@ -157,7 +157,7 @@ function score_node($q)
 }
 
 //----------------------------------------------------------------------------------------
-// Store ordering of nodes and reverse lookup (by label) for INORDER traversal of tree
+// Store ordering of nodes for INORDER traversal of tree
 function get_inorder($t, &$order_to_label, &$order_to_node)
 {
 	$count = 0;
@@ -291,5 +291,115 @@ function copy_marked_tree($t)
 	return $copy_of_tree;
 
 }
+
+//----------------------------------------------------------------------------------------
+// Get node "heights" and store in x coordinate. Root has x=0, leaf furthest from root
+// has x = limit
+function get_node_heights($t, $limit = 400)
+{
+	$max_path_length = 0.0;		
+	$t->GetRoot()->SetAttribute('path_length', $t->GetRoot()->GetAttribute('edge_length'));
+
+	// Get path lengths
+	$n = new PreorderIterator ($t->getRoot());
+	$q = $n->Begin();
+	while ($q != NULL)
+	{			
+		$d = $q->GetAttribute('edge_length');
+		
+		// Avoid negative branch lengths
+		if ($d < 0.00001)
+		{
+			$d = 0.0;
+		}
+		
+		if ($q != $t->GetRoot())
+			$q->SetAttribute('path_length', $q->GetAncestor()->GetAttribute('path_length') + $d);
+
+		$max_path_length = max($max_path_length, $q->GetAttribute('path_length'));
+		$q = $n->Next();
+	}
+	
+	// scale to drawing size
+	$n = new NodeIterator ($t->getRoot());
+	
+	$q = $n->Begin();
+	while ($q != NULL)
+	{
+		$pt = array();
+		$pt['y'] = 0;
+		$pt['x'] = ($q->GetAttribute('path_length') / $max_path_length) * $limit;
+		
+		$q->SetAttribute('xy', $pt);
+
+		$q = $n->Next();
+	}
+
+}
+
+
+//----------------------------------------------------------------------------------------
+// Get max heights of subtree rooted at each node. This enables us to draw
+// "closed" subtrees as shapes that cover the full range of node heights
+function get_max_subtree_height($t)
+{
+	$n = new PreorderIterator ($t->GetRoot());
+	$q = $n->Begin();
+	while ($q != NULL)
+	{	
+		$pt = $q->GetAttribute('xy');		
+		$x = $pt['x'];
+		$q->SetAttribute('max_x', $x);
+
+		$q = $n->Next();
+	}
+
+	// update each node with max_x of its descendants
+	{
+		$n = new NodeIterator ($t->GetRoot());
+		$q = $n->Begin();
+		while ($q != NULL)
+		{	
+			$anc = $q->GetAncestor();
+			if ($anc)
+			{
+				$anc->SetAttribute('max_x', max($anc->GetAttribute('max_x'), $q->GetAttribute('max_x')));
+			}
+
+			$q = $n->Next();
+		}
+	}
+}
+
+//----------------------------------------------------------------------------------------
+// Add node q to subtree of informative nodes
+function add_children_to_subtree(&$subtree, $q, $is_root = false)
+{
+	// Add root to subtree, in any subsequent call $q will already be in the subtree
+	if ($is_root)
+	{
+		$subtree[] = $q->id;
+		$q->SetAttribute('marked', true);
+	}
+	
+	// add children
+	$children = get_children($q);
+	
+	foreach ($children as $child)
+	{
+		$subtree[] = $child->id;
+		$child->SetAttribute('marked', true);
+	}
+	
+	/*
+	echo '<pre>';
+	echo "Subtree\n";
+	print_r($subtree);
+	echo '</pre>';
+	*/
+	
+}
+
+
 
 ?>
