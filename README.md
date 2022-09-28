@@ -50,6 +50,11 @@ Reverse opening of nodes (does this correspond to rewinding pq)?
 
 ## Notes
 
+### Scoring nodes
+
+Chen et al. 2009 provide a scoring function based on “information content”.
+
+
 ### Taxonomic labels
 
 Could assign taxonomic labels to internal nodes based on classification of each sequence, then mark nodes where taxonomic labels change (e.g., genus name changes to species). This would give internal labels that are meaningful. See similar approach in Kozlov et al. 2016.
@@ -65,6 +70,8 @@ See for example “PhyloGeoTool: interactively exploring large phylogenies in an
 > We here present an algorithm that partitions the binary phylogenetic tree into clusters using a recursive approach. Combining such an approach to identify clusters of sequences with a progressive zooming approach ensures an efficient and interactive visual navigation of the entire phylogenetic tree. To partition a binary tree 𝒯 into k clusters, the following algorithm was devised. Intuitively, the binary tree is partioned recursively using the cluster sizes as clustering criterium. Starting at the root of the tree 𝒯, the first cluster consists of its left child and all its descendants (i.e. the ‘left’ part of 𝒯), while the second cluster consists of its right child and all its descendants (i.e. the ‘right’ part of 𝒯). These clusters are added to a set 𝒞, that is ordered by descending cluster size (i.e. the number of tree leaves that each cluster covers). The largest cluster from 𝒞 is removed and its corresponding tree is split at the root, creating two new clusters corresponding to the resulting subtrees. These two new clusters are subsequently added to 𝒞. This process is repeated until the maximum number of clusters is reached (i.e. |𝒞| = k).
 
 Essentially the same idea is presented in Zaslavsky et al., who also have some nice ideas on representing within-collapsed clade structure.
+
+> Jin Chen, MacEachren, A. M., & Peuquet, D. J. (2009). Constructing Overview + Detail Dendrogram-Matrix Views. IEEE Transactions on Visualization and Computer Graphics, 15(6), 889–896. https://doi.org/10.1109/tvcg.2009.130
 
 > Kozlov, A. M., Zhang, J., Yilmaz, P., Glöckner, F. O., & Stamatakis, A. (2016). Phylogeny-aware identification and correction of taxonomically mislabeled sequences. Nucleic acids research, 44(11), 5022–5033. https://doi.org/10.1093/nar/gkw396
 
