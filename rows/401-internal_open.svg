@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="12px">
+  <style type="text/css"><![CDATA[path {
+		stroke: #000;
+		stroke-width:1;
+		stroke-linecap:square;
+		fill: none;
+	}
+	text {
+		alignment-baseline:middle;
+		font-family:sans-serif;
+		font-size: 12px;
+	}
+	/*
+	text:hover {
+		font-weight:bold;
+		}
+	*/
+	circle {
+		stroke: black;
+		fill:black;
+		/*opacity:0.2;*/
+		}
+	/*circle:hover {opacity:1.0; }*/
+	rect {
+		fill:white;
+		stroke: black;
+	}]]></style>
+  <g id="viewport">
+    <g id="tree" display="inline">
+      <path vector-effect="non-scaling-stroke" d="M 235.27806011326 0 235.27806011326 12"/>
+      <circle cx="235.27806011326" cy="6" r="5"/>
+      <text x="247.27806011326" y="6" dominant-baseline="middle" text-anchor="start">85</text>
+      <path vector-effect="non-scaling-stroke" d="M 235.27806011326 6 222.92435022506 6"/>
+      <path vector-effect="non-scaling-stroke" d="M 222.92435022506 6 222.92435022506 0"/>
+    </g>
+  </g>
+</svg>

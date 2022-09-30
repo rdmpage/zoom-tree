@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="12px">
+  <style type="text/css"><![CDATA[path {
+		stroke: #000;
+		stroke-width:1;
+		stroke-linecap:square;
+		fill: none;
+	}
+	text {
+		alignment-baseline:middle;
+		font-family:sans-serif;
+		font-size: 12px;
+	}
+	/*
+	text:hover {
+		font-weight:bold;
+		}
+	*/
+	circle {
+		stroke: black;
+		fill:black;
+		/*opacity:0.2;*/
+		}
+	/*circle:hover {opacity:1.0; }*/
+	rect {
+		fill:white;
+		stroke: black;
+	}]]></style>
+  <g id="viewport">
+    <g id="tree" display="inline">
+      <circle cx="250.04791636416" cy="6" r="5"/>
+      <text x="262.04791636416" y="6" dominant-baseline="middle" text-anchor="start">Platyscapa_sp_F_concinna</text>
+      <path vector-effect="non-scaling-stroke" d="M 250.04791636416 6 219.68926963845 6"/>
+      <path vector-effect="non-scaling-stroke" d="M 219.68926963845 6 219.68926963845 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 212.32466966749 0 212.32466966749 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 189.1563815885 0 189.1563815885 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 155.02250617105 0 155.02250617105 12"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="12px">
+  <style type="text/css"><![CDATA[path {
+		stroke: #000;
+		stroke-width:1;
+		stroke-linecap:square;
+		fill: none;
+	}
+	text {
+		alignment-baseline:middle;
+		font-family:sans-serif;
+		font-size: 12px;
+	}
+	/*
+	text:hover {
+		font-weight:bold;
+		}
+	*/
+	circle {
+		stroke: black;
+		fill:black;
+		/*opacity:0.2;*/
+		}
+	/*circle:hover {opacity:1.0; }*/
+	rect {
+		fill:white;
+		stroke: black;
+	}]]></style>
+  <g id="viewport">
+    <g id="tree" display="inline">
+      <circle cx="253.87541745317" cy="6" r="5"/>
+      <text x="265.87541745317" y="6" dominant-baseline="middle" text-anchor="start">Pegoscapus_gemellus_F_bullenei</text>
+      <path vector-effect="non-scaling-stroke" d="M 253.87541745317 6 243.19442427762 6"/>
+      <path vector-effect="non-scaling-stroke" d="M 243.19442427762 6 243.19442427762 0"/>
+      <path vector-effect="non-scaling-stroke" d="M 175.11833889938 0 175.11833889938 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 164.37345723828 0 164.37345723828 12"/>
+    </g>
+  </g>
+</svg>

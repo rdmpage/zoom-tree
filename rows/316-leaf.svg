@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="12px">
+  <style type="text/css"><![CDATA[path {
+		stroke: #000;
+		stroke-width:1;
+		stroke-linecap:square;
+		fill: none;
+	}
+	text {
+		alignment-baseline:middle;
+		font-family:sans-serif;
+		font-size: 12px;
+	}
+	/*
+	text:hover {
+		font-weight:bold;
+		}
+	*/
+	circle {
+		stroke: black;
+		fill:black;
+		/*opacity:0.2;*/
+		}
+	/*circle:hover {opacity:1.0; }*/
+	rect {
+		fill:white;
+		stroke: black;
+	}]]></style>
+  <g id="viewport">
+    <g id="tree" display="inline">
+      <circle cx="284.33860897343" cy="6" r="5"/>
+      <text x="296.33860897343" y="6" dominant-baseline="middle" text-anchor="start">Allotriozoon_heterandromorphum</text>
+      <path vector-effect="non-scaling-stroke" d="M 284.33860897343 6 254.69435167707 6"/>
+      <path vector-effect="non-scaling-stroke" d="M 254.69435167707 6 254.69435167707 0"/>
+      <path vector-effect="non-scaling-stroke" d="M 186.93770872659 0 186.93770872659 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 175.11833889938 0 175.11833889938 12"/>
+    </g>
+  </g>
+</svg>

@@ -18,19 +18,20 @@ $newick = "('KJ836409.1':0.03942,(((('KJ837499.1':0.00079,('HQ948094.1':0.00584,
 
 require_once('butterflies.php');
 //require_once('AALF015423.php');
+//require_once('phylo.io.php');
+//require_once('figwasp.php');
+
 
 $t = parse_newick($newick);
 
+echo $t->WriteNewick();
 
 $t->BuildWeights($t->GetRoot());
 
 
 $initial_size = 9;
 
-$zoom = 2;
-
-
-
+$zoom = 1;
 
 // how many lines is this drawing allowed?
 $k = pow(2, $zoom - 1) * $initial_size;
@@ -65,6 +66,8 @@ while(count($queue) > 0 && count($subtree) < $k)
 	
 	add_children_to_queue($queue, $c->node);
 }
+
+
 
 
 // Create a copy of the original tree containing just the "marked" nodes.
@@ -124,6 +127,20 @@ foreach ($images as $image)
 
 
 $html .= '</div>';
+
+// for debugging show the subtree (which is the order in which nodes were added to tree)
+$html .= '<h2>Subtree</h2>';
+$html .= '<ul>';
+
+foreach ($subtree as $id)
+{
+	$html .= '<li>';
+	$html .= $id;
+	$html .= ' ' . $t->id_to_node_map[$id]->GetLabel();
+	$html .= '</li>';	
+}
+
+
 $html .= '</html>';
 file_put_contents($zoom . '.html', $html);
 

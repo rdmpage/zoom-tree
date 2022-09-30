@@ -136,6 +136,8 @@ class SVGPort extends Port
 		$text_node->setAttribute('x', $pt['x']);
 		$text_node->setAttribute('y', $pt['y']);
 		
+		$text_node->setAttribute('dominant-baseline', 'middle');		
+		
 		$align = 'left';
 	
 		switch ($align)
@@ -165,8 +167,8 @@ class SVGPort extends Port
 	{
 		$text_node = $this->document->createElement('text');
 		$text_node->setAttribute('x', $pt['x']);
-		$text_node->setAttribute('y', $pt['y']);
-		
+		$text_node->setAttribute('y', $pt['y']);		
+				
 		switch ($align)
 		{
 			case 'left':

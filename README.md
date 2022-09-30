@@ -1,12 +1,25 @@
 # Zoomable view of a phylogenetic tree
 
-Ideas
 
-- Tree in order
-- One row per node
-- At any given zoom we have a set of rows to draw
+## Notes
 
-- Traverse tree compute all metrics and generate open and closed SVG images
+### 2022-09-30 
+- Now outputs subtree as list of nodes ordered by sequence in which they are added to grow the subtree. We should be able to take this list and recreate the subtree.
+- If we store the score for each node at the start then we could explore what happens when we favour a node (e.g., the BLAST query) or spurred a node (e.g., preventing a large but uninteresting clade from every being opened automatically.
+
+### Challenges and questions
+
+- How do we handle labelling internal nodes, especially as we make transitions in zoom levels? Need to think about levels of detail.
+- When do we get to actually make a working viewer?????
+
+## Basic idea
+
+- Traverse tree INORDER 
+- This means we can draw each node in its own row, independent from any other node (so long as we include the “crossings” below that node)
+- This in turn means that zooming or collapsing a tree is simply adding or removing rows
+- Hence we can pre-generate “glyphs” for each node based on two states: “open” leaves and internals, and “closed” for internals only. Open shows the node, if it is internal it also has connections to its two children. Closed shows a representation of the closed subtree rooted at that internal node.
+- For a given zoom level we compute the subtree to display using a scoring function (how “important” is the node) and a priority queue (see below).
+- The display is simply the INORDER list of nodes in the subtree, together with their state (“open” or “closed”).
 
 
 ## Draw

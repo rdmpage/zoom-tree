@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="12px">
+  <style type="text/css"><![CDATA[path {
+		stroke: #000;
+		stroke-width:1;
+		stroke-linecap:square;
+		fill: none;
+	}
+	text {
+		alignment-baseline:middle;
+		font-family:sans-serif;
+		font-size: 12px;
+	}
+	/*
+	text:hover {
+		font-weight:bold;
+		}
+	*/
+	circle {
+		stroke: black;
+		fill:black;
+		/*opacity:0.2;*/
+		}
+	/*circle:hover {opacity:1.0; }*/
+	rect {
+		fill:white;
+		stroke: black;
+	}]]></style>
+  <g id="viewport">
+    <g id="tree" display="inline">
+      <circle cx="294.46783795557" cy="6" r="5"/>
+      <text x="306.46783795557" y="6" dominant-baseline="middle" text-anchor="start">Agaon_obtusum</text>
+      <path vector-effect="non-scaling-stroke" d="M 294.46783795557 6 258.98649629737 6"/>
+      <path vector-effect="non-scaling-stroke" d="M 258.98649629737 6 258.98649629737 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 216.48322927254 0 216.48322927254 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 188.37810367359 0 188.37810367359 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 183.6503557427 0 183.6503557427 12"/>
+    </g>
+  </g>
+</svg>

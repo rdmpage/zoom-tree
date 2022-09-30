@@ -21,8 +21,18 @@ $newick = "('KJ836409.1':0.03942,(((('KJ837499.1':0.00079,('HQ948094.1':0.00584,
 require_once('butterflies.php');
 //require_once('AALF015423.php');
 //require_once('figwasp.php');
+//require_once('phylo.io.php');
+//require_once('figwasp.php');
 
 $t = parse_newick($newick);
+
+// we want some space under the root, but need to do this intellgently
+if ($t->GetRoot()->GetAttribute('edge_length') == 0)
+{
+	$t->GetRoot()->SetAttribute('edge_length', 0.1);
+}
+
+
 //echo $t->WriteNewick() . "\n";
 
 $drawing_options = new stdclass;
@@ -119,8 +129,7 @@ foreach ($node_types as $type)
 	{
 		$port = new SVGPort('', $drawing_options->width, $node_height, $font_height, false);
 		$port->StartGroup('tree', true);
-	
-	
+		
 		$y_offset = $node_height / 2.0;
 	
 		// row

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="12px">
+  <style type="text/css"><![CDATA[path {
+		stroke: #000;
+		stroke-width:1;
+		stroke-linecap:square;
+		fill: none;
+	}
+	text {
+		alignment-baseline:middle;
+		font-family:sans-serif;
+		font-size: 12px;
+	}
+	/*
+	text:hover {
+		font-weight:bold;
+		}
+	*/
+	circle {
+		stroke: black;
+		fill:black;
+		/*opacity:0.2;*/
+		}
+	/*circle:hover {opacity:1.0; }*/
+	rect {
+		fill:white;
+		stroke: black;
+	}]]></style>
+  <g id="viewport">
+    <g id="tree" display="inline">
+      <circle cx="252.63249600697" cy="6" r="5"/>
+      <text x="264.63249600697" y="6" dominant-baseline="middle" text-anchor="start">Pegoscapus_oroczoi</text>
+      <path vector-effect="non-scaling-stroke" d="M 252.63249600697 6 233.93640191665 6"/>
+      <path vector-effect="non-scaling-stroke" d="M 233.93640191665 6 233.93640191665 0"/>
+      <path vector-effect="non-scaling-stroke" d="M 223.46449833019 0 223.46449833019 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 220.29330622913 0 220.29330622913 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 216.64004646435 0 216.64004646435 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 211.81936982721 0 211.81936982721 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 175.11833889938 0 175.11833889938 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 164.37345723828 0 164.37345723828 12"/>
+    </g>
+  </g>
+</svg>

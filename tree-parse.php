@@ -30,7 +30,7 @@ class TokenTypes
 	const Minus 		= 14;
 	const DoubleQuote 	= 15;
 	const Period 		= 16;
-	const Backslash 	= 17;
+	const BackSlash 	= 17;
 	const QuotedString	= 18;
 }
 

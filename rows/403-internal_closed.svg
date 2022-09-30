@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="24px">
+  <style type="text/css"><![CDATA[path {
+		stroke: #000;
+		stroke-width:1;
+		stroke-linecap:square;
+		fill: none;
+	}
+	text {
+		alignment-baseline:middle;
+		font-family:sans-serif;
+		font-size: 12px;
+	}
+	/*
+	text:hover {
+		font-weight:bold;
+		}
+	*/
+	circle {
+		stroke: black;
+		fill:black;
+		/*opacity:0.2;*/
+		}
+	/*circle:hover {opacity:1.0; }*/
+	rect {
+		fill:white;
+		stroke: black;
+	}]]></style>
+  <g id="viewport">
+    <g id="tree" display="inline">
+      <polygon vector-effect="non-scaling-stroke" fill="#000" stroke="1" points="236.21896326412,11.5 266.64730651953,0 266.64730651953,24 236.21896326412,12.5 "/>
+      <text x="278.64730651953" y="12" dominant-baseline="middle" text-anchor="start">85</text>
+      <path vector-effect="non-scaling-stroke" d="M 236.21896326412 12 235.27806011326 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 235.27806011326 12 235.27806011326 0"/>
+    </g>
+  </g>
+</svg>

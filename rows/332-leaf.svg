@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000px" height="12px">
+  <style type="text/css"><![CDATA[path {
+		stroke: #000;
+		stroke-width:1;
+		stroke-linecap:square;
+		fill: none;
+	}
+	text {
+		alignment-baseline:middle;
+		font-family:sans-serif;
+		font-size: 12px;
+	}
+	/*
+	text:hover {
+		font-weight:bold;
+		}
+	*/
+	circle {
+		stroke: black;
+		fill:black;
+		/*opacity:0.2;*/
+		}
+	/*circle:hover {opacity:1.0; }*/
+	rect {
+		fill:white;
+		stroke: black;
+	}]]></style>
+  <g id="viewport">
+    <g id="tree" display="inline">
+      <circle cx="250.68680121969" cy="6" r="5"/>
+      <text x="262.68680121969" y="6" dominant-baseline="middle" text-anchor="start">Deilagaon_annulatae</text>
+      <path vector-effect="non-scaling-stroke" d="M 250.68680121969 6 215.6294467838 6"/>
+      <path vector-effect="non-scaling-stroke" d="M 215.6294467838 6 215.6294467838 0"/>
+      <path vector-effect="non-scaling-stroke" d="M 198.41440394947 0 198.41440394947 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 190.75940177145 0 190.75940177145 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 181.28648177726 0 181.28648177726 12"/>
+      <path vector-effect="non-scaling-stroke" d="M 175.11833889938 0 175.11833889938 12"/>
+    </g>
+  </g>
+</svg>
