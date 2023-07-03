@@ -1,7 +1,32 @@
 # Zoomable view of a phylogenetic tree
 
 
+## Overview
+
+- Page described a series of different types of visualisations of trees.
+- This approach is a collapsible viewer
+- Needs to solve problem of efficiently drawing a collapsable tree
+- Need to automatically compute layout for different zoom levels
+- Need a notion of node importance for that computation
+- Need to compute internal node labels if they are missing
+- Need to transition labels between zoom levels, e.g. transition between leaf and internal node labels
+- Need to explore partitions as way to compute vertical bars for visualisation
+- Need to render each zoom level on web, and display transitions between zoom levels in a nice way.
+
+
+
 ## Notes
+
+### 2022-11-08
+
+- Thinking about partitioning internal labels to display on right of tree. Requires solving [Maximum disjoint set](https://en.wikipedia.org/wiki/Maximum_disjoint_set) problem, which is straightforward in 1-dimensional case (i.e., lines). `intervals.php` has some simple code for this. So we then need to have a set of intervals (e.g., inorder number) for internal node labels and then find maximum disjoint set. Need to figure out a rule for creating a candidate list of labels/partitions.
+
+### 2022-10-11
+
+- Tried some of the large caddisfly trees, the big tree broke web browsers by having too many images to load for larger trees, so we will need tiling/lazy loading ASAP for that to work.
+- We need to be able to reroot and ladderise trees for a better appearance
+- Need algorithms for internal labels
+- Need to have a working version of a zoomable browser so can decide what other information we need. Specifically, how do we zoom up and down and retain placement for the tree?
 
 ### 2022-09-30 
 - Now outputs subtree as list of nodes ordered by sequence in which they are added to grow the subtree. We should be able to take this list and recreate the subtree.

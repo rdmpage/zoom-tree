@@ -1,0 +1,93 @@
+<html>
+<head>
+
+<style>
+	#viewer {
+		position:relative;
+		width:800px;
+		height:90%;
+		/*height:600px;*/
+		/*border:1px solid black;	 */	
+		background:none;
+	}
+	
+	#well{
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;	
+	}	
+	
+	#well {
+		overflow-y:auto;
+	}
+	
+</style>
+
+<script>
+var zoom = 1;
+
+function load_tree(zoom) {
+
+			var url = "api_tree.php?zoom=" + zoom;
+			
+			fetch(url).then(
+					function(response){
+						if (response.status != 200) {
+							console.log("Looks like there was a problem. Status Code: " + response.status);
+        					return;
+						}
+				
+						response.json().then(function(data) {
+						    var html = data.html;
+
+							document.getElementById("well").innerHTML = html;		
+						}
+						);
+					});
+		}
+		
+function plus() {
+	zoom++;
+	load_tree(zoom);
+
+}
+
+
+function minus() {
+	zoom--;
+	zoom = Math.max(1, zoom);
+	load_tree(zoom);
+
+}
+
+
+
+</script>
+
+</head>
+<body>
+
+<button onclick="minus()">-</button>
+<button onclick="plus()">+</button>
+
+<div id="viewer">
+
+	<div id="well">
+	</div>
+
+</div>
+
+
+<script>
+	// load tree
+	
+	load_tree(1);
+
+</script>
+
+</body>
+</html>

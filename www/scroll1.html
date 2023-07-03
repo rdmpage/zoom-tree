@@ -1,0 +1,342 @@
+<html>
+<head>
+<style>
+	body {
+		padding:0px;
+		margin: 0px;
+		background: url(g1001cc2.gif);
+	}
+	
+	.page {
+		width:160px;
+		
+		border:1px solid red; 
+	
+	}
+	
+	.well {
+		
+	}
+	
+	.row {
+		width:100%;
+		height:30px;
+		background:yellow;
+		opacity:0.3;
+		
+	}
+</style>
+
+
+<script src="intersection-observer.js"></script>
+
+<script>
+
+var page_info = null;
+
+var current_page = null;
+
+var row_height = 30;
+var page_height = 300;
+
+
+var lastTimeout = null;
+
+function plus() {
+
+	if (!current_page) {
+		var pages = document.querySelectorAll('.page');
+		current_page = pages[0];
+	}
+	
+	var hit = {};
+	
+	// compute
+    var viewerRect = page_info.root.getBoundingClientRect();
+    
+    var itemRect = current_page.getBoundingClientRect();
+
+	console.log(JSON.stringify(viewerRect) + ' [' + current_page.id + '] ' + JSON.stringify(itemRect));
+	
+	var page_offset = itemRect.y - viewerRect.y ;
+	var page_top = page_offset + itemRect.height;
+	
+	console.log(page_offset);
+	
+	var midpoint = viewerRect.height / 2;
+	
+	
+	// Does the current page include the midpoint?
+	if (page_offset > midpoint) {
+		//current_page = current_page.previousSibling;
+		console.log("data" + current_page.dataset.page);
+				
+		var previous_page_id = 'page' + (parseInt(current_page.dataset.page) - 1);
+		
+		current_page = document.getElementById(previous_page_id);
+		
+	} else if (page_top < midpoint) {
+		console.log("data " + current_page.dataset.page);
+		
+		var next_page_id = 'page' + (parseInt(current_page.dataset.page) + 1);
+		
+		current_page = document.getElementById(next_page_id);	
+	}
+	
+	for (const row of current_page.children) {
+		 var rowRect = row.getBoundingClientRect();
+		 
+		 var y0 = rowRect.y - viewerRect.y;
+		 var y1 = rowRect.y - viewerRect.y + rowRect.height;
+		 
+		 if (y0 <= midpoint && y1 >= midpoint) {
+		 	hit.id = row.id;
+		 	hit.top = y0; // top of this row w.r.t. to viewer
+		 }
+		 
+		 console.log(y0 + ' ' + y1 + ' ' + midpoint);
+		 	
+		 
+		 //console.log(row.id + ' ' + JSON.stringify(rowRect));
+		 //console.log(row.id + ' ' + y0);
+	
+	}
+	
+	if (hit.id) {
+				
+		console.log(JSON.stringify(hit));
+		document.getElementById('info').innerHTML = JSON.stringify(hit);
+		
+		// debug/test 
+		// how do we set position in previous/next viewer?
+		// 
+		
+		var target_row_id = 'two' + hit.id;
+		
+		var other_viewer = document.getElementById('viewer2');
+		var other_row = document.getElementById(target_row_id);
+		
+		 var _viewerRect = other_viewer.getBoundingClientRect();
+		 var _rowRect = other_row.getBoundingClientRect();
+		 
+		 var _y0 = _rowRect.y - _viewerRect.y;
+		 var _y1 = _rowRect.y - _viewerRect.y + _rowRect.height;
+		 
+		 alert(_y0 + ' ' + _y1);
+		
+		
+		// what is position of other_row w.r.t. well?
+		
+		//document.getElementById('viewer2').scrollTop=100;
+		
+		
+		
+		
+	} else {
+		console.log("No hit");
+	}
+	
+	
+	
+
+	
+}
+
+
+
+
+
+</script>
+
+</head>
+<body>
+
+<!-- viewer -->
+<div id="viewer" style="width:220px;height:400px;border:1px solid black;overflow-y:auto;">
+
+	<div style="position:absolute;height:10px;width:200px;top:195px;border:1px solid blue;"></div>
+
+	<div class="well">
+
+		<div id="page0" data-page="0" class="page">
+			<div id="0" class="row">0</div>
+			<div id="1" class="row">1</div>
+			<div id="2" class="row">2</div>
+			<div id="3" class="row">3</div>
+			<div id="4" class="row">4</div>
+			<div id="5" class="row">5</div>
+			<div id="6" class="row">6</div>
+			<div id="7" class="row">7</div>
+			<div id="8" class="row">8</div>
+			<div id="9" class="row">9</div>
+		</div>
+	
+		<div id="page1" data-page="1" class="page">	
+			<div id="10" class="row">10</div>
+			<div id="11" class="row">11</div>
+			<div id="12" class="row">12</div>
+			<div id="13" class="row">13</div>
+			<div id="14" class="row">14</div>
+			<div id="15" class="row">15</div>
+			<div id="16" class="row">16</div>
+			<div id="17" class="row">17</div>
+			<div id="18" class="row">18</div>
+			<div id="19" class="row">19</div>
+		</div>	
+		
+		<div id="page2" data-page="2" class="page">
+			<div id="20" class="row">20</div>
+			<div id="21" class="row">21</div>
+			<div id="22" class="row">22</div>
+			<div id="23" class="row">23</div>
+			<div id="24" class="row">24</div>
+			<div id="25" class="row">25</div>
+			<div id="26" class="row">26</div>
+			<div id="27" class="row">27</div>
+			<div id="28" class="row">28</div>
+			<div id="29" class="row">29</div>
+		</div>	
+	</div>
+
+</div>
+
+<button onclick="plus()">+</button>
+
+<p id="info">xxx</p>
+
+
+
+<p>
+So we need to know which row is in the centre of the viewer. We will also need to know
+which row was clicked on. We also need to be able to position a list correctly.
+</p>
+
+<div id="viewer2" style="width:220px;height:420px;border:1px solid black;overflow-y:auto;">
+
+	<div id="well2" class="well">
+
+		<div id="two_page0" class="page">
+
+
+			<div id="two0" class="row">0</div>
+			<div id="two1" class="row">1</div>
+			<div id="two2" class="row">2</div>
+			<!-- <div id="two3" class="row">3</div> -->
+			<div id="two4" class="row">4</div>
+			<!-- <div id="two5" class="row">5</div> -->
+			<div id="two6" class="row">6</div>
+			<!-- <div id="two7" class="row">7</div> -->
+			<div id="two8" class="row">8</div>
+			<div id="two9" class="row">9</div>
+		
+
+	
+		</div>
+	
+		<div  id="two_page1" class="page">
+	
+			<!-- <div id="two10" class="row">10</div> -->
+			<!-- <div id="two11" class="row">11</div> -->
+			<div id="two12" class="row">12</div>
+			<div id="two13" class="row">13</div>
+			<div id="two14" class="row">14</div>
+			<!-- <div id="two15" class="row">15</div> -->
+			<!-- <div id="two16" class="row">16</div> -->
+			<div id="two17" class="row">17</div>
+			<!-- <div id="two18" class="row">18</div> -->
+			<div id="two19" class="row">19</div>
+	
+	
+		</div>	
+		
+		
+		
+		<div class="page">
+
+
+			<div id="two20" class="row">20</div>
+			<div id="two21" class="row">21</div>
+			<div id="two22" class="row">22</div>
+			<div id="two23" class="row">23</div>
+			<div id="two24" class="row">24</div>
+			<div id="two25" class="row">25</div>
+			<div id="two26" class="row">26</div>
+			<div id="two27" class="row">27</div>
+			<div id="two28" class="row">28</div>
+			<div id="two29" class="row">29</div>
+		
+
+	
+		</div>
+		
+		
+	
+	</div>
+
+</div>
+
+
+
+<script>
+
+page_info = {
+  root: document.getElementById('viewer'),
+  
+  // only consider the viewport of the element displaying the pages
+  //rootMargin: '-45% 0px -45% 0px',
+  
+  rootMargin: 0,
+
+  // we want a big chunk of the page to be visible 
+  // so we don't trigger events if just a bit appears                                     
+  threshold: 1
+};
+
+
+if (window.IntersectionObserver) {
+
+  // page information
+  this.io_info = new IntersectionObserver(
+    function callback(entries) {
+    
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          let item = entry.target;
+          
+          //console.log(item.outerHTML);
+                
+          // remove previous timeout
+          if (lastTimeout) clearTimeout(lastTimeout);
+
+          lastTimeout = setTimeout(function() {
+          		//console.log(item.id);
+          		current_page = item;
+          	}, 100);
+            
+        }
+      }	
+    },
+    page_info
+  );
+
+}
+
+
+// get all the pages
+var pages = document.querySelectorAll('.page');
+
+// load all the pages
+for (var page of pages) {
+  if (window.IntersectionObserver) {
+    this.io_info.observe(page);
+  }
+}
+
+</script>
+
+
+
+
+
+</body>
+</html>

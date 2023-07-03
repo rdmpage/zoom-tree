@@ -1,0 +1,238 @@
+<html>
+<head>
+
+<style>
+	#viewer {
+		position:relative;
+		width:400px;
+		height:40%;
+		/*height:600px;*/
+		border:1px solid black;
+		
+		background:none;
+	}
+	
+	#well, #surface {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	
+	}	
+	
+	#well {
+		overflow-y:auto;
+	}
+	
+	
+	.tile {
+		height:30px;
+		border:1px solid red;
+	}
+
+</style>
+
+  <script src="intersection-observer.js"></script>
+
+
+</head>
+<body>
+
+<button onclick="info()">+</button>
+
+<div id="viewer">
+
+<div id="well">
+	<div class="tile" data-order="0">1</div>
+	<div class="tile" data-order="1">2</div>
+	<div class="tile" data-order="2">3</div>
+	<div class="tile" data-order="3">4</div>
+	<div class="tile" data-order="4">5</div>
+	<div class="tile" data-order="5">6</div>
+	<div class="tile" data-order="6">7</div>
+	<div class="tile" data-order="7">8</div>
+	<div class="tile" data-order="8">9</div>
+	<div class="tile" data-order="9">10</div>
+	<div class="tile" data-order="10">11</div>
+	<div class="tile" data-order="11">12</div>
+	<div class="tile" data-order="12">13</div>
+	<div class="tile" data-order="13">14</div>
+	<div class="tile" data-order="14">15</div>
+	<div class="tile" data-order="15">16</div>
+	<div class="tile" data-order="16">17</div>
+	<div class="tile" data-order="17">18</div>
+	<div class="tile" data-order="18">19</div>
+	<div class="tile" data-order="19">20</div>
+	<div class="tile" data-order="20">21</div>
+	<div class="tile" data-order="21">22</div>
+	<div class="tile" data-order="22">23</div>
+</div>
+
+
+
+</div>
+
+<?php
+
+
+?>
+
+<script>
+
+var visible = null;
+
+// get location of row in middle of viewer
+function info() {
+
+
+//alert(visible.dataset.order);
+
+			const viewRect = viewer.getBoundingClientRect();
+			const itemRect = visible.getBoundingClientRect();
+			
+			var vh = viewRect.height;
+			 
+			
+			console.log("d=" + (itemRect.top - viewRect.top));
+
+
+	// position w.r.t. viewer
+	
+	// which row is in the horizontal centre?
+	
+	// what are its exact coordinates?
+	
+	// if we zoom in, place correspodning node here (e.g., by scrolling)
+
+}
+
+var lastTimeout = null;
+
+// Options to send information messages, for example the number of the page currently
+// being displayed
+var bar_info = {
+  root: document.getElementById('viewer'),
+  
+  // only consider the viewport of the element displaying the pages
+  rootMargin: '0px 0px 0px 0px',
+
+  // we want a big chunk of the page to be visible 
+  // so we don't trigger events if just a bit appears                                     
+  threshold: 1.0
+};
+
+
+if (window.IntersectionObserver) {
+
+  // page information
+  this.io_info = new IntersectionObserver(
+    function callback(entries) {
+    
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+        let item = entry.target;
+        //console.log("id=" + item.outerHTML);
+        
+        
+          // remove previous timeout
+          if (lastTimeout) clearTimeout(lastTimeout);
+
+          lastTimeout = setTimeout(function() {
+
+          if (item.hasAttribute('data-order')) {
+          		// all we really need is to have the id of at least
+          		// one element that is visible. Then when use does something we
+          		// can compite where to put new drawing.
+          
+	          console.log("order=" + item.dataset.order);
+	          
+	          visible = item;
+	          
+	          /*
+	          // OK we have an row in the viewer, we want to get its coordinates
+	          // w.r.t. to the viewer, use that to find the row that is in the
+	          // centre of the viewer. We use that to place zoom in/out displays
+	          
+	          
+	          // offset of item relative to well that holds the images
+	          // which is item height * item order in list
+	          console.log("offsetTop=" + item.offsetTop);
+	          
+	          
+	          
+	          
+	          //console.log(item.offsetParent);
+	          
+	          var viewer = document.getElementById('viewer');
+	          
+	          // offset w.r.t. viewer div
+			const viewRect = viewer.getBoundingClientRect();
+			const itemRect = item.getBoundingClientRect();
+			
+			console.log("d=" + (itemRect.top - viewRect.top));
+	          
+	          
+	          var viewer_h = viewer.clientHeight;
+	          //console.log(viewer_h);
+	          
+	          //viewer.offsetHeight / item.offsetHeight
+	          */
+	          
+	      } else {
+	      	console.log("*");
+	      }
+
+          }, 100);
+        
+        
+        /*
+          let item = entry.target;
+          
+          // send listener (either this window, or its parent) a message 
+          // when page being displayed changes
+          
+          // remove previous timeout
+          if (lastMessageTimeout) clearTimeout(lastMessageTimeout);
+
+          lastMessageTimeout = setTimeout(function() {
+
+          if (item.hasAttribute('data-page')) {
+	          listener.postMessage(item.dataset.page, "*");
+	      } else {
+	      	listener.postMessage(null, "*");
+	      }
+
+          }, 100);
+          
+          */
+          
+        }
+      }
+    },
+    bar_info
+  );
+
+}
+
+const tiles = document.querySelectorAll('.tile');
+
+console.log('load all the tiles');
+
+// load all the tiles
+for (const tile of tiles) {
+	//console.log('tile');
+  	if (window.IntersectionObserver) {
+  		//console.log('observe');
+    	this.io_info.observe(tile);
+  	}
+}
+
+</script>
+
+
+
+</body>
+</html>
