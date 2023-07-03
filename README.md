@@ -17,6 +17,12 @@
 
 ## Notes
 
+### 2023-07-03
+
+- Need to think about tiling to handle lots of rows, would be motivation for zooming in powers of two so we completely cover the tiles.
+
+- [Implicit In-order Forests: Zooming a billion trace events at 60fps](https://thume.ca/2021/03/14/iforests/) - interesting article on zooming in on a large list of objects. Part of the data structure involves adding new items (e.g., list is a stream of data), but still relevant.
+
 ### 2022-11-08
 
 - Thinking about partitioning internal labels to display on right of tree. Requires solving [Maximum disjoint set](https://en.wikipedia.org/wiki/Maximum_disjoint_set) problem, which is straightforward in 1-dimensional case (i.e., lines). `intervals.php` has some simple code for this. So we then need to have a set of intervals (e.g., inorder number) for internal node labels and then find maximum disjoint set. Need to figure out a rule for creating a candidate list of labels/partitions.
