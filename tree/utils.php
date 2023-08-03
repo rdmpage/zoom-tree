@@ -308,11 +308,13 @@ function get_node_heights($t, $limit = 400)
 	{			
 		$d = $q->GetAttribute('edge_length');
 		
+		/*
 		// Avoid negative branch lengths
 		if ($d < 0.00001)
 		{
 			$d = 0.0;
 		}
+		*/
 		
 		if ($q != $t->GetRoot())
 			$q->SetAttribute('path_length', $q->GetAncestor()->GetAttribute('path_length') + $d);
