@@ -1,6 +1,10 @@
 # Zoomable view of a phylogenetic tree
 
 
+`php rows.php` generates the SVG files for each node, one for leaves and two (open and closed) for internals.
+
+
+
 ## Overview
 
 - Page described a series of different types of visualisations of trees.
@@ -16,6 +20,14 @@
 
 
 ## Notes
+
+### 2023-07-07
+
+OK, not tiles but pages (just like PDFs). Page numbers go up in powers of two. For n leaves we have 2n+1 nodes in total (which is an odd number) so there will be some space at top and bottom. Zoom level doubles the number of pages. 
+
+Can we compute position of current node after zooming in and zooming out? If we know the row numbers going forward and backwards it becomes easy to automatically scroll to equivalent position in tree display.
+
+With pages can also do lazy loading (can we also do lazy unloading?)
 
 ### 2023-07-03
 
