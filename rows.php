@@ -1,8 +1,13 @@
 <?php
 
+
+
 // Generate tree images
 
 error_reporting(E_ALL);
+
+ini_set('memory_limit', '-1');
+
 
 require_once('tree/node.php');
 require_once('tree/tree.php');
@@ -38,13 +43,42 @@ $newick = "('KJ836409.1':0.03942,(((('KJ837499.1':0.00079,('HQ948094.1':0.00584,
 
 //$newick = file_get_contents('odonto_decoded.tre');
 
+$newick = file_get_contents('legume.tre');
+//$newick = file_get_contents('problem trees/phylo.io.1.nwk-fixed');
+
+//$newick = "(('GBMNE30218-21':0.00068,((('THSIM030-09':0.00003,'GBMNA46365-19':0.00004)'THSIM030-09…GBMNA46365-19':0.00012,('GBMNA46419-19':0.00011,('GBMNE30222-21':0.00006,'GBMIN60929-17':0.00008)'GBMNE30222-21…GBMIN60929-17':0.00004)'GBMNA46419-19…GBMIN60929-17':0.00008)'THSIM030-09…GBMIN60929-17':0.00043,(('GBMNE30232-21':0.00000,'GBMNE30231-21':0.00000)'GBMNE30232-21…GBMNE30231-21':0.00035,(('GBMNA46394-19':0.00026,(('GBMNC2086-20':0.00000,'GBMNC2085-20':0.00000)'GBMNC2086-20…GBMNC2085-20':0.00001,'GBMNC2084-20':0.00002)'GBMNC2086-20…GBMNC2084-20':0.00018)'GBMNA46394-19…GBMNC2084-20':0.00015,((('GBSIM419-14':0.00015,'GBSIM421-14':0.00006)'GBSIM419-14…GBSIM421-14':0.00014,('GBMNC2078-20':0.00000,('GBMNC2076-20':0.00000,'GBMNC2077-20':0.00000)'GBMNC2076-20…GBMNC2077-20':0.00000)'GBMNC2078-20…GBMNC2077-20':0.00011)'GBSIM419-14…GBMNC2077-20':0.00007,('GBMIN61138-17':0.00016,(('GBMNA46450-19':0.00022,(('GBMNE30238-21':0.00000,'GBMNE30239-21':0.00000)'GBMNE30238-21…GBMNE30239-21':0.00011,('GBMNA46448-19':0.00008,(('GBMNA46392-19':0.00004,('GBMNA46432-19':0.00014,('GBMNA46429-19':0.00002,('GBMNA46433-19':0.00002,'GBMNA46391-19':0.00001)'GBMNA46433-19…GBMNA46391-19':0.00001)'GBMNA46429-19…GBMNA46391-19':0.00001)'GBMNA46432-19…GBMNA46391-19':0.00001)'GBMNA46392-19…GBMNA46391-19':0.00003,('GBMNA46403-19':0.00000,('GBMNA46398-19':0.00000,'GBMNA46404-19':0.00000)'GBMNA46398-19…GBMNA46404-19':0.00000)'GBMNA46403-19…GBMNA46404-19':0.00001)'GBMNA46392-19…GBMNA46404-19':0.00004)'GBMNA46448-19…GBMNA46404-19':0.00001)'GBMNE30238-21…GBMNA46404-19':0.00004)'GBMNA46450-19…GBMNA46404-19':0.00001,('GBMNA46406-19':0.00009,(('GBSIM417-14':0.00000,('GBSIM416-14':0.00009,'GBSIM378-14':0.00000)'GBSIM416-14…GBSIM378-14':0.00000)'GBSIM417-14…GBSIM378-14':0.00007,((('THSIM047-09':0.00004,('THSIM026-09':0.00004,(('STHAI248-12':0.00000,'GBMNC2069-20':0.00002)'STHAI248-12…GBMNC2069-20':0.00002,('GBMNC2070-20':0.00000,'GBMNC2071-20':0.00000)'GBMNC2070-20…GBMNC2071-20':0.00000)'STHAI248-12…GBMNC2071-20':0.00004)'THSIM026-09…GBMNC2071-20':0.00002)'THSIM047-09…GBMNC2071-20':0.00007,((('GBMNC2065-20':0.00006,('GBMNC2064-20':0.00002,('GBMNC9349-20':-0.00001,'GBMNC2066-20':0.00003)'GBMNC9349-20…GBMNC2066-20':0.00000)'GBMNC2064-20…GBMNC2066-20':0.00001)'GBMNC2065-20…GBMNC2066-20':0.00008,(('GBMNC2072-20':0.00001,('GBMNC2074-20':0.00000,'GBMNC2073-20':0.00000)'GBMNC2074-20…GBMNC2073-20':0.00002)'GBMNC2072-20…GBMNC2073-20':0.00022,(('GBDP19127-15':0.00001,'GBDP19128-15':0.00004)'GBDP19127-15…GBDP19128-15':0.00013,('GMMGD3239-14':0.00002,'GBDP19157-15':0.00003)'GMMGD3239-14…GBDP19157-15':0.00009)'GBDP19127-15…GBDP19157-15':0.00008)'GBMNC2072-20…GBDP19157-15':0.00004)'GBMNC2065-20…GBDP19157-15':0.00006,('GBMNC2068-20':0.00005,('GBMNC9348-20':0.00002,'GBMNC2067-20':0.00000)'GBMNC9348-20…GBMNC2067-20':0.00000)'GBMNC2068-20…GBMNC2067-20':0.00003)'GBMNC2065-20…GBMNC2067-20':0.00005)'THSIM047-09…GBMNC2067-20':0.00004,(('GBMNE30253-21':0.00002,('GBMNE30261-21':0.00000,('GBMNE30255-21':0.00000,'GBMNE30254-21':0.00000)'GBMNE30255-21…GBMNE30254-21':0.00000)'GBMNE30261-21…GBMNE30254-21':0.00000)'GBMNE30253-21…GBMNE30254-21':0.00000,(('GBMNE30257-21':0.00000,'GBMNE30260-21':0.00000)'GBMNE30257-21…GBMNE30260-21':0.00000,(('GBMNE30259-21':0.00000,'GBMNE30258-21':0.00000)'GBMNE30259-21…GBMNE30258-21':0.00000,('GBMNE30241-21':0.00000,'GBMNE30240-21':0.00000)'GBMNE30241-21…GBMNE30240-21':0.00000)'GBMNE30259-21…GBMNE30240-21':0.00000)'GBMNE30257-21…GBMNE30240-21':0.00002)'GBMNE30253-21…GBMNE30240-21':0.00008)'THSIM047-09…GBMNE30240-21':0.00002)'GBSIM417-14…GBMNE30240-21':0.00001)'GBMNA46406-19…GBMNE30240-21':0.00003)'GBMNA46450-19…GBMNE30240-21':0.00004)'GBMIN61138-17…GBMNE30240-21':0.00008)'GBSIM419-14…GBMNE30240-21':0.00011)'GBMNA46394-19…GBMNE30240-21':0.00012)'GBMNE30232-21…GBMNE30240-21':0.00002)'THSIM030-09…GBMNE30240-21':0.00014)'GBMNE30218-21…GBMNE30240-21':0.00002,((OQ117897:0.00000,Query:0.00000)'OQ117897…Query':0.00036,(((('BETN11523-21':0.00000,'BETN13304-22':0.00000)'BETN11523-21…BETN13304-22':0.00000,(('BETN13221-22':0.00000,'BETN13306-22':0.00000)'BETN13221-22…BETN13306-22':0.00000,('BETN5857-19':0.00000,'BETN8580-20':0.00000)'BETN5857-19…BETN8580-20':0.00000)'BETN13221-22…BETN8580-20':0.00000)'BETN11523-21…BETN8580-20':0.00000,(('ISUP125-14':0.00000,'ISUP128-14':0.00000)'ISUP125-14…ISUP128-14':0.00000,('ISUP130-14':0.00000,'ISUP131-14':0.00000)'ISUP130-14…ISUP131-14':0.00000)'ISUP125-14…ISUP131-14':0.00000)'BETN11523-21…ISUP131-14':0.00082,('BDORO064-14':0.00065,(('GBMNA27350-19':0.00060,('GBDP14574-13':0.00000,('GBDP14579-13':0.00000,'GBDP14580-13':0.00000)'GBDP14579-13…GBDP14580-13':0.00000)'GBDP14574-13…GBDP14580-13':0.00056)'GBMNA27350-19…GBDP14580-13':0.00004,(('JSDIQ236-10':0.00001,'JSDIP589-10':0.00001)'JSDIQ236-10…JSDIP589-10':0.00062,('TTMDI548-10':0.00059,(('GMRSA900-14':0.00006,'GMRSA151-14':0.00005)'GMRSA900-14…GMRSA151-14':0.00041,(('DINOR354-18':0.00001,'ZMBN227-16':0.00002)'DINOR354-18…ZMBN227-16':0.00044,('XJDQD1081-18':0.00019,('FINTI349-12':0.00001,('GDIP020-18':0.00002,((('GDIP023-18':0.00000,'FINTI245-12':0.00000)'GDIP023-18…FINTI245-12':0.00000,('EUTIP419-11':0.00000,'EUTIP420-11':0.00000)'EUTIP419-11…EUTIP420-11':0.00000)'GDIP023-18…EUTIP420-11':0.00000,(('EUTIP245-11':0.00000,'EUTIP421-11':0.00000)'EUTIP245-11…EUTIP421-11':0.00000,(('GBMIX439-14':0.00000,'EUTIP247-11':0.00000)'GBMIX439-14…EUTIP247-11':0.00000,('FINTI103-11':0.00000,'EUTIP248-11':0.00000)'FINTI103-11…EUTIP248-11':0.00000)'GBMIX439-14…EUTIP248-11':0.00000)'EUTIP245-11…EUTIP248-11':0.00000)'GDIP023-18…EUTIP248-11':0.00000)'GDIP020-18…EUTIP248-11':0.00002)'FINTI349-12…EUTIP248-11':0.00031)'XJDQD1081-18…EUTIP248-11':0.00015)'DINOR354-18…EUTIP248-11':0.00014)'GMRSA900-14…EUTIP248-11':0.00003)'TTMDI548-10…EUTIP248-11':0.00002)'JSDIQ236-10…EUTIP248-11':0.00004)'GBMNA27350-19…EUTIP248-11':0.00002)'BDORO064-14…EUTIP248-11':0.00011)'BETN11523-21…EUTIP248-11':0.00007)'OQ117897…EUTIP248-11':0.00010)'GBMNE30218-21…EUTIP248-11';";
+//$newick = "(('GBMNE30218-21':0.00068,((('THSIM030-09':0.00003,'GBMNA46365-19':0.00004)Diptera:0.00012,('GBMNA46419-19':0.00011,('GBMNE30222-21':0.00006,'GBMIN60929-17':0.00008)Simulium:0.00004)Simulium:0.00008)Diptera:0.00043,(('GBMNE30232-21':0.00000,'GBMNE30231-21':0.00000)Simulium:0.00035,(('GBMNA46394-19':0.00026,(('GBMNC2086-20':0.00000,'GBMNC2085-20':0.00000)'Simulium maehongsonense':0.00001,'GBMNC2084-20':0.00002)'Simulium maehongsonense':0.00018)Simulium:0.00015,((('GBSIM419-14':0.00015,'GBSIM421-14':0.00006)'Simulium duolongum':0.00014,('GBMNC2078-20':0.00000,('GBMNC2076-20':0.00000,'GBMNC2077-20':0.00000)'Simulium maelanoiense':0.00000)'Simulium maelanoiense':0.00011)Simulium:0.00007,('GBMIN61138-17':0.00016,(('GBMNA46450-19':0.00022,(('GBMNE30238-21':0.00000,'GBMNE30239-21':0.00000)Simulium:0.00011,('GBMNA46448-19':0.00008,(('GBMNA46392-19':0.00004,('GBMNA46432-19':0.00014,('GBMNA46429-19':0.00002,('GBMNA46433-19':0.00002,'GBMNA46391-19':0.00001)'Simulium asakoae':0.00001)'Simulium asakoae':0.00001)'Simulium asakoae':0.00001)'Simulium asakoae':0.00003,('GBMNA46403-19':0.00000,('GBMNA46398-19':0.00000,'GBMNA46404-19':0.00000)'Simulium asakoae':0.00000)'Simulium asakoae':0.00001)'Simulium asakoae':0.00004)'Simulium asakoae':0.00001)Simulium:0.00004)Simulium:0.00001,('GBMNA46406-19':0.00009,(('GBSIM417-14':0.00000,('GBSIM416-14':0.00009,'GBSIM378-14':0.00000)Simulium:0.00000)Simulium:0.00007,((('THSIM047-09':0.00004,('THSIM026-09':0.00004,(('STHAI248-12':0.00000,'GBMNC2069-20':0.00002)Diptera:0.00002,('GBMNC2070-20':0.00000,'GBMNC2071-20':0.00000)'Simulium muangpanense':0.00000)Diptera:0.00004)Diptera:0.00002)Diptera:0.00007,((('GBMNC2065-20':0.00006,('GBMNC2064-20':0.00002,('GBMNC9349-20':-0.00001,'GBMNC2066-20':0.00003)Simulium:0.00000)Simulium:0.00001)Simulium:0.00008,(('GBMNC2072-20':0.00001,('GBMNC2074-20':0.00000,'GBMNC2073-20':0.00000)'Simulium teerachanense':0.00002)'Simulium teerachanense':0.00022,(('GBDP19127-15':0.00001,'GBDP19128-15':0.00004)'Simulium izuae':0.00013,('GMMGD3239-14':0.00002,'GBDP19157-15':0.00003)'Simulium roslihashimi':0.00009)Simulium:0.00008)Simulium:0.00004)Simulium:0.00006,('GBMNC2068-20':0.00005,('GBMNC9348-20':0.00002,'GBMNC2067-20':0.00000)Simulium:0.00000)Simulium:0.00003)Simulium:0.00005)Diptera:0.00004,(('GBMNE30253-21':0.00002,('GBMNE30261-21':0.00000,('GBMNE30255-21':0.00000,'GBMNE30254-21':0.00000)Simulium:0.00000)Simulium:0.00000)Simulium:0.00000,(('GBMNE30257-21':0.00000,'GBMNE30260-21':0.00000)Simulium:0.00000,(('GBMNE30259-21':0.00000,'GBMNE30258-21':0.00000)Simulium:0.00000,('GBMNE30241-21':0.00000,'GBMNE30240-21':0.00000)Simulium:0.00000)Simulium:0.00000)Simulium:0.00002)Simulium:0.00008)Diptera:0.00002)Diptera:0.00001)Diptera:0.00003)Diptera:0.00004)Diptera:0.00008)Diptera:0.00011)Diptera:0.00012)Diptera:0.00002)Diptera:0.00014)Diptera:0.00002,((OQ117897:0.00000,Query:0.00000):0.00036,(((('BETN11523-21':0.00000,'BETN13304-22':0.00000)'Dicaelus sculptilis sculptilis':0.00000,(('BETN13221-22':0.00000,'BETN13306-22':0.00000)'Dicaelus sculptilis sculptilis':0.00000,('BETN5857-19':0.00000,'BETN8580-20':0.00000)'Dicaelus sculptilis sculptilis':0.00000)'Dicaelus sculptilis sculptilis':0.00000)'Dicaelus sculptilis sculptilis':0.00000,(('ISUP125-14':0.00000,'ISUP128-14':0.00000)'Dicaelus sculptilis intricatus':0.00000,('ISUP130-14':0.00000,'ISUP131-14':0.00000)'Dicaelus sculptilis intricatus':0.00000)'Dicaelus sculptilis intricatus':0.00000)'Dicaelus sculptilis':0.00082,('BDORO064-14':0.00065,(('GBMNA27350-19':0.00060,('GBDP14574-13':0.00000,('GBDP14579-13':0.00000,'GBDP14580-13':0.00000)'Stomoxys indicus':0.00000)'Stomoxys indicus':0.00056)Diptera:0.00004,(('JSDIQ236-10':0.00001,'JSDIP589-10':0.00001)'Brachyopa daeckei':0.00062,('TTMDI548-10':0.00059,(('GMRSA900-14':0.00006,'GMRSA151-14':0.00005)Diptera:0.00041,(('DINOR354-18':0.00001,'ZMBN227-16':0.00002)Dicranota:0.00044,('XJDQD1081-18':0.00019,('FINTI349-12':0.00001,('GDIP020-18':0.00002,((('GDIP023-18':0.00000,'FINTI245-12':0.00000)'Dicranota bimaculata':0.00000,('EUTIP419-11':0.00000,'EUTIP420-11':0.00000)Diptera:0.00000)Diptera:0.00000,(('EUTIP245-11':0.00000,'EUTIP421-11':0.00000)Diptera:0.00000,(('GBMIX439-14':0.00000,'EUTIP247-11':0.00000)Diptera:0.00000,('FINTI103-11':0.00000,'EUTIP248-11':0.00000)Diptera:0.00000)Diptera:0.00000)Diptera:0.00000)Diptera:0.00000)Diptera:0.00002)Diptera:0.00031)Diptera:0.00015)Diptera:0.00014)Diptera:0.00003)Diptera:0.00002)Diptera:0.00004)Diptera:0.00002)Diptera:0.00011)Insecta:0.00007):0.00010);";
+//$newick = "(('GBMNE30218-21':0.00068,((('THSIM030-09':0.00003,'GBMNA46365-19':0.00004):0.00012,('GBMNA46419-19':0.00011,('GBMNE30222-21':0.00006,'GBMIN60929-17':0.00008):0.00004)Simulium:0.00008):0.00043,(('GBMNE30232-21':0.00000,'GBMNE30231-21':0.00000)Simulium:0.00035,(('GBMNA46394-19':0.00026,(('GBMNC2086-20':0.00000,'GBMNC2085-20':0.00000):0.00001,'GBMNC2084-20':0.00002)'Simulium maehongsonense':0.00018)Simulium:0.00015,((('GBSIM419-14':0.00015,'GBSIM421-14':0.00006)'Simulium duolongum':0.00014,('GBMNC2078-20':0.00000,('GBMNC2076-20':0.00000,'GBMNC2077-20':0.00000):0.00000)'Simulium maelanoiense':0.00011)Simulium:0.00007,('GBMIN61138-17':0.00016,(('GBMNA46450-19':0.00022,(('GBMNE30238-21':0.00000,'GBMNE30239-21':0.00000):0.00011,('GBMNA46448-19':0.00008,(('GBMNA46392-19':0.00004,('GBMNA46432-19':0.00014,('GBMNA46429-19':0.00002,('GBMNA46433-19':0.00002,'GBMNA46391-19':0.00001):0.00001):0.00001):0.00001):0.00003,('GBMNA46403-19':0.00000,('GBMNA46398-19':0.00000,'GBMNA46404-19':0.00000):0.00000):0.00001):0.00004)'Simulium asakoae':0.00001):0.00004)Simulium:0.00001,('GBMNA46406-19':0.00009,(('GBSIM417-14':0.00000,('GBSIM416-14':0.00009,'GBSIM378-14':0.00000):0.00000)Simulium:0.00007,((('THSIM047-09':0.00004,('THSIM026-09':0.00004,(('STHAI248-12':0.00000,'GBMNC2069-20':0.00002):0.00002,('GBMNC2070-20':0.00000,'GBMNC2071-20':0.00000)'Simulium muangpanense':0.00000):0.00004):0.00002):0.00007,((('GBMNC2065-20':0.00006,('GBMNC2064-20':0.00002,('GBMNC9349-20':-0.00001,'GBMNC2066-20':0.00003):0.00000):0.00001):0.00008,(('GBMNC2072-20':0.00001,('GBMNC2074-20':0.00000,'GBMNC2073-20':0.00000):0.00002)'Simulium teerachanense':0.00022,(('GBDP19127-15':0.00001,'GBDP19128-15':0.00004)'Simulium izuae':0.00013,('GMMGD3239-14':0.00002,'GBDP19157-15':0.00003)'Simulium roslihashimi':0.00009):0.00008):0.00004):0.00006,('GBMNC2068-20':0.00005,('GBMNC9348-20':0.00002,'GBMNC2067-20':0.00000):0.00000):0.00003)Simulium:0.00005):0.00004,(('GBMNE30253-21':0.00002,('GBMNE30261-21':0.00000,('GBMNE30255-21':0.00000,'GBMNE30254-21':0.00000):0.00000):0.00000):0.00000,(('GBMNE30257-21':0.00000,'GBMNE30260-21':0.00000):0.00000,(('GBMNE30259-21':0.00000,'GBMNE30258-21':0.00000):0.00000,('GBMNE30241-21':0.00000,'GBMNE30240-21':0.00000):0.00000):0.00000):0.00002)Simulium:0.00008):0.00002):0.00001):0.00003):0.00004):0.00008):0.00011):0.00012):0.00002):0.00014)Diptera:0.00002,((OQ117897:0.00000,Query:0.00000):0.00036,(((('BETN11523-21':0.00000,'BETN13304-22':0.00000):0.00000,(('BETN13221-22':0.00000,'BETN13306-22':0.00000):0.00000,('BETN5857-19':0.00000,'BETN8580-20':0.00000):0.00000):0.00000)'Dicaelus sculptilis sculptilis':0.00000,(('ISUP125-14':0.00000,'ISUP128-14':0.00000):0.00000,('ISUP130-14':0.00000,'ISUP131-14':0.00000):0.00000)'Dicaelus sculptilis intricatus':0.00000)'Dicaelus sculptilis':0.00082,('BDORO064-14':0.00065,(('GBMNA27350-19':0.00060,('GBDP14574-13':0.00000,('GBDP14579-13':0.00000,'GBDP14580-13':0.00000):0.00000)'Stomoxys indicus':0.00056):0.00004,(('JSDIQ236-10':0.00001,'JSDIP589-10':0.00001)'Brachyopa daeckei':0.00062,('TTMDI548-10':0.00059,(('GMRSA900-14':0.00006,'GMRSA151-14':0.00005):0.00041,(('DINOR354-18':0.00001,'ZMBN227-16':0.00002)Dicranota:0.00044,('XJDQD1081-18':0.00019,('FINTI349-12':0.00001,('GDIP020-18':0.00002,((('GDIP023-18':0.00000,'FINTI245-12':0.00000)'Dicranota bimaculata':0.00000,('EUTIP419-11':0.00000,'EUTIP420-11':0.00000):0.00000):0.00000,(('EUTIP245-11':0.00000,'EUTIP421-11':0.00000):0.00000,(('GBMIX439-14':0.00000,'EUTIP247-11':0.00000):0.00000,('FINTI103-11':0.00000,'EUTIP248-11':0.00000):0.00000):0.00000):0.00000):0.00000):0.00002):0.00031):0.00015):0.00014):0.00003):0.00002):0.00004):0.00002)Diptera:0.00011)Insecta:0.00007):0.00010);";
+
+
+//$newick = file_get_contents('ar122_r202.tree');
+//$newick = file_get_contents('bac120_r202.tree');
+
+// serious bug, tree seems to have some missing nodes
+//$newick = file_get_contents('map2.tre');
+
+$newick = file_get_contents('GTDB/ar122_r202.sp_labels.tree');
+
+$newick = "(((('ABINP4232-21':0.00035,(('ACHAR1446-18':0.00000,('ACHAR1447-18':0.00000,('ACHAR1968-18':-0.00001,'ACHAR2038-18':0.00003)g__Procladius:0.00001)g__Procladius:0.00000)g__Procladius:0.00001,(('ACHAR3221-19':0.00000,('ACHAR3218-19':0.00000,'ACHAR3222-19':0.00000)g__Procladius:0.00000)g__Procladius:0.00006,('ACHAR3223-19':0.00000,'ACHAR1904-18':0.00001)g__Procladius:0.00004)g__Procladius:0.00001)g__Procladius:0.00040)g__Procladius:0.00037,(('ABOLA898-15':0.00068,('ABOLB641-15':0.00053,'ABLCV650-09':0.00058)o__Lepidoptera:0.00012)'s__Eupithecia satyrata':0.00016,(('ACGBA5113-15':0.00000,'ACGBA5121-15':0.00000)'s__Carcelia flavirostrisDHJ32':0.00069,(('ABINP623-21':0.00000,('ABINP5931-21':-0.00001,('ABINP2225-21':0.00000,(('ABINP569-21':0.00000,(('ABINP2321-21':0.00000,'ABINP706-21':0.00000)g__Coenosia:0.00000,(('ABINP1137-21':0.00000,'ABINP2295-21':0.00000)g__Coenosia:0.00000,('ABINP4498-21':0.00000,'ABINP769-21':0.00000)g__Coenosia:0.00000)g__Coenosia:0.00000)g__Coenosia:0.00000)g__Coenosia:0.00000,('ABINP1187-21':0.00000,('ABINP3102-21':0.00000,('ABINP4831-21':0.00000,('ABINP4802-21':0.00000,('ABINP4350-21':0.00000,('ABINP5230-21':0.00000,'ABINP6122-21':0.00001)g__Coenosia:0.00000)g__Coenosia:0.00000)g__Coenosia:0.00000)g__Coenosia:0.00000)g__Coenosia:0.00000)g__Coenosia:0.00000)g__Coenosia:0.00000)g__Coenosia:0.00001)g__Coenosia:0.00001)g__Coenosia:0.00065,('ABMSP922-17':0.00061,(('ABMSP1325-17':0.00005,'ABMSP1117-17':0.00009)'s__Anopheles squamosus':0.00061,('ACMIP132-07':0.00067,('ACMIP208-07':0.00003,('ACMIP223-07':0.00002,((('ACMIP220-07':0.00000,'ACMIP218-07':0.00000)'s__Culex territans':0.00002,('ACMIP217-07':0.00000,'ACMIP224-07':0.00000)'s__Culex territans':0.00001)'s__Culex territans':0.00001,('ACMIP222-07':0.00002,('ACMIP219-07':0.00001,('ACMIP210-07':0.00001,('ACMIP209-07':0.00000,'ACMIP211-07':0.00000)'s__Culex territans':0.00001)'s__Culex territans':0.00001)'s__Culex territans':0.00001)'s__Culex territans':0.00000)'s__Culex territans':0.00000)'s__Culex territans':0.00001)'s__Culex territans':0.00043)g__Culex:0.00006)f__Culicidae:0.00008)f__Culicidae:0.00002)o__Diptera:0.00008)o__Diptera:0.00004)c__Insecta:0.00003)c__Insecta:0.00006,(Query:0.00070,('ABINP3110-21':0.00052,(('ABINP4142-21':0.00080,('ABSSI974-22':0.00000,('ABSSI831-22':0.00000,('ABSSI1017-22':0.00000,('ABSSI1020-22':0.00000,('ABSSI839-22':0.00000,('ABSSI821-22':0.00000,'ABSSI947-22':0.00000)g__Smittia:0.00000)g__Smittia:0.00000)g__Smittia:0.00000)g__Smittia:0.00000)g__Smittia:0.00000)g__Smittia:0.00055)sf__Orthocladiinae:0.00002,(('ABSSI1539-22':0.00000,'ABSSI1394-22':0.00000)f__Chironomidae:0.00002,('ABSSI1548-22':0.00000,('ABSSI1411-22':0.00000,('ABSSI1498-22':0.00000,('ABSSI1532-22':0.00000,(('ABSSI1600-22':0.00000,('ABSSI116-22':0.00000,'ABSSI1584-22':0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000,('ABSSI1650-22':0.00000,(('ABSSI1617-22':0.00000,'ABSSI034-22':0.00000)f__Chironomidae:0.00000,((('ABSSI1604-22':0.00000,'ABSSI213-22':0.00000)f__Chironomidae:0.00000,('ABSSI1413-22':0.00000,'ABSSI1590-22':0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000,(('ABSSI1010-22':0.00000,'ABSSI1605-22':0.00000)f__Chironomidae:0.00000,('ABSSI1527-22':0.00000,('ABSSI1523-22':0.00000,'ABSSI1403-22':0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00000)f__Chironomidae:0.00001)f__Chironomidae:0.00065)sf__Orthocladiinae:0.00015)sf__Orthocladiinae:0.00009)sf__Orthocladiinae:0.00004)c__Insecta,((((('ACHAR2120-18':0.00001,'ACHAR2130-18':0.00002)'s__Cricotopus obnixus':0.00028,('ABSSI1345-22':0.00005,(('ACHAR2099-18':0.00000,('ACHAR1899-18':0.00000,'ACHAR1897-18':0.00000)'s__Cricotopus obnixus':0.00000)'s__Cricotopus obnixus':0.00001,('ACHAR3186-19':0.00000,'ACHAR1288-18':0.00000)'s__Cricotopus obnixus':0.00000)'s__Cricotopus obnixus':0.00003)'s__Cricotopus obnixus':0.00018)'s__Cricotopus obnixus':0.00050,('ACHAR3194-19':0.00072,('ABINP5761-21':0.00001,'ABINP2067-21':0.00002)f__Chironomidae:0.00062)g__Cricotopus:0.00010)'s__Cricotopus obnixus':0.00002,(('ABINP3093-21':0.00044,('ABINP2665-21':0.00072,('ABSSI1064-22':-0.00001,'ABSSI574-22':0.00003)sf__Orthocladiinae:0.00056)g__Orthocladius:0.00007)g__Orthocladius:0.00021,('AACTA3640-20':0.00074,'ABINP5864-21':0.00069)sf__Orthocladiinae:0.00008)sf__Orthocladiinae:0.00002)sf__Orthocladiinae:0.00007,(('ABINP3962-21':0.00002,'ABINP3057-21':0.00003)g__Orthocladius:0.00071,(('ACHAR1463-18':0.00008,'ACHAR1280-18':0.00008)'s__Orthocladius sp. TE13':0.00049,('ACHAR270-18':0.00009,'ACHAR279-18':0.00015)g__Orthocladius:0.00049)'s__Orthocladius sp. TE13':0.00021)'s__Orthocladius sp. TE13':0.00005)sf__Orthocladiinae:0.00001)c__Insecta;";
+
+$newick = "((('ABINP5736-21':0.00063,(('AACTA7101-20':0.00048,('AACTA6033-20':0.00001,('AACTA6997-20':0.00002,('AACTA7601-20':-0.00001,'AACTA6390-20':0.00001)f__Chloropidae:0.00001)f__Chloropidae:0.00001)f__Chloropidae:0.00047)f__Chloropidae:0.00006,('AACTA7371-20':0.00054,('ABGEN1429-20':0.00050,'ABINP4628-21':0.00054)g__Oscinella:0.00004)g__Oscinella:0.00002)g__Oscinella:0.00004)o__Diptera:0.00004,((('ACGBA5944-16':-0.00001,'ACGBA11128-20':0.00007)'s__Archytas Janzen44':0.00048,('ACGBA4931-15':0.00062,((('ACGBA4974-15':0.00000,'ACGBA3143-13':0.00000)'s__Telothyria ricardocalerloi':0.00000,('ACGBA4999-15':0.00000,('ACGBA4997-15':0.00000,'ACGBA3278-13':0.00000)'s__Telothyria ricardocalerloi':0.00000)'s__Telothyria ricardocalerloi':0.00000)'s__Telothyria ricardocalerloi':0.00024,('ACGBA624-12':0.00014,('ACGBA5067-15':0.00000,('ACGBA2042-12':0.00000,('ACGBA4188-13':0.00000,('ACGAZ1557-12':-0.00001,('ACGBA3079-13':0.00002,'ACGBA3069-13':0.00009)'s__Telothyria eldaararyae':0.00007)'s__Telothyria eldaararyae':0.00000)'s__Telothyria eldaararyae':0.00000)'s__Telothyria eldaararyae':0.00000)'s__Telothyria eldaararyae':0.00012)g__Telothyria:0.00004)g__Telothyria:0.00024)f__Tachinidae:0.00005)f__Tachinidae:0.00005,(('ABINP4039-21':0.00057,'ABINP028-21':0.00053)o__Diptera:0.00008,((('ACGBA10943-20':0.00002,(('ACGBA7675-17':0.00000,('ACGBA8598-18':0.00000,'ACGBA8599-18':0.00000)'s__Patelloa xanthuraDHJ03':0.00000)'s__Patelloa xanthuraDHJ03':0.00000,(('ACGBA8600-18':0.00000,'ACGBA8603-18':0.00000)'s__Patelloa xanthuraDHJ03':0.00000,('ACGBA8607-18':0.00000,'ACGBA8666-18':0.00000)'s__Patelloa xanthuraDHJ03':0.00000)'s__Patelloa xanthuraDHJ03':0.00000)'s__Patelloa xanthuraDHJ03':0.00000)'s__Patelloa xanthuraDHJ03':0.00060,('ABINP008-21':0.00000,'ABINP045-21':0.00000)'s__Phebellia strigifrons':0.00040)sf__Exoristinae:0.00009,(((('ABINP4496-21':0.00000,(('ABINP648-21':0.00000,('ABINP322-21':0.00000,'ABINP881-21':0.00000)'s__Pegoplata nigroscutellata':0.00000)'s__Pegoplata nigroscutellata':0.00000,(('ABINP2215-21':0.00000,'ABINP444-21':0.00000)'s__Pegoplata nigroscutellata':0.00000,('ABINP2159-21':0.00000,('ABINP4644-21':0.00000,'ABINP3892-21':0.00000)'s__Pegoplata nigroscutellata':0.00000)'s__Pegoplata nigroscutellata':0.00000)'s__Pegoplata nigroscutellata':0.00000)'s__Pegoplata nigroscutellata':0.00000)'s__Pegoplata nigroscutellata':0.00015,('ABINP2029-21':0.00000,'ABINP3900-21':0.00000)'s__Pegoplata nigroscutellata':0.00009)'s__Pegoplata nigroscutellata':0.00026,(('ABINP1987-21':0.00011,'ABINP775-21':0.00006)g__Pegomya:0.00044,(('ABINP2341-21':0.00001,('ABINP2476-21':0.00000,'ABINP2707-21':0.00000)g__Pegomya:0.00000)g__Pegomya:0.00005,('ABINP2360-21':0.00003,('ABINP2032-21':0.00005,(('ABINP1858-21':0.00001,'ABINP3097-21':0.00002)g__Pegomya:0.00002,(('ABINP410-21':0.00000,'ABINP3053-21':0.00002)g__Pegomya:0.00001,('ABINP5690-21':0.00002,('ABINP2420-21':0.00000,'ABINP2535-21':0.00000)g__Pegomya:0.00001)g__Pegomya:0.00000)g__Pegomya:0.00002)g__Pegomya:0.00001)g__Pegomya:0.00002)g__Pegomya:0.00001)g__Pegomya:0.00032)g__Pegomya:0.00010)sf__Pegomyinae:0.00004,((('ACGAZ127-11':0.00000,('ACGAZ1564-12':0.00000,'ACGAZ861-11':0.00000)'s__Genea Wood02DHJ02':0.00000)'s__Genea Wood02DHJ02':0.00000,(('ACGAZ129-11':0.00000,'ACGAZ836-11':0.00000)'s__Genea Wood02DHJ02':0.00000,('ACGAZ859-11':0.00000,'ACGAZ841-11':0.00000)'s__Genea Wood02DHJ02':0.00000)'s__Genea Wood02DHJ02':0.00000)'s__Genea Wood02DHJ02':0.00046,('ACHAR3670-19':0.00014,(('ACHAR4190-19':0.00000,'ACHAR3466-19':0.00005)g__Zaphne:0.00001,('ACHAR3459-19':0.00005,('ACHAR3467-19':0.00006,('ACHAR1790-18':0.00000,'ACHAR3458-19':0.00000)g__Zaphne:0.00002)g__Zaphne:0.00000)g__Zaphne:0.00001)g__Zaphne:0.00010)g__Zaphne:0.00039)o__Diptera:0.00003)o__Diptera:0.00001)o__Diptera:0.00001)o__Diptera:0.00002)o__Diptera:0.00004)o__Diptera:0.00003,(('AACTA1004-20':0.00074,Query:0.00042)f__Phoridae:0.00006,(('AACTA1829-20':0.00053,('ABINP5649-21':0.00032,(('ABINP3425-21':0.00004,'ABINP3422-21':0.00004)sf__Syrphinae:0.00037,(('ABINP3444-21':0.00002,('ABINP063-21':0.00000,'ABINP3405-21':0.00000)g__Dasysyrphus:0.00001)g__Dasysyrphus:0.00031,('ABINP3423-21':0.00016,'ABINP094-21':0.00021)g__Dasysyrphus:0.00017)g__Dasysyrphus:0.00002)g__Dasysyrphus:0.00008)g__Dasysyrphus:0.00013)sf__Syrphinae:0.00010,(('ABINP3459-21':0.00053,('ACHAR3454-19':0.00005,('ACHAR3452-19':0.00000,('ACHAR3456-19':0.00000,('ACHAR3453-19':-0.00001,'ACHAR3455-19':0.00001)'s__Helophilus lapponicus':0.00000)'s__Helophilus lapponicus':0.00000)'s__Helophilus lapponicus':0.00002)'s__Helophilus lapponicus':0.00055)sf__Eristalinae:0.00010,(('ABINP3490-21':0.00022,('ABINP3493-21':0.00000,('ABINP083-21':0.00002,'ABINP128-21':0.00000)g__Platycheirus:0.00001)g__Platycheirus:0.00013)'s__Platycheirus varipes':0.00044,('ABINP3390-21':0.00005,('ABINP068-21':0.00000,('ABINP073-21':0.00000,('ABINP1845-21':0.00000,'ABINP3401-21':0.00000)sf__Syrphinae:0.00000)sf__Syrphinae:0.00000)sf__Syrphinae:0.00003)sf__Syrphinae:0.00041)'s__Platycheirus varipes':0.00002)f__Syrphidae:0.00004)f__Syrphidae:0.00005)o__Diptera:0.00001)o__Diptera;";
+
+$newick="(((('ABMC174-05':0.00003,('ABMC218-05':0.00000,'ABMC172-05':0.00000)'s__Canis lupus':0.00002)'s__Canis lupus':0.00099,('ABCDC108-07':0.00089,('ABBM294-05':0.00007,('ABBM307-05':0.00000,'ABBM295-05':0.00000)'s__Thainycteris aureocollaris':0.00008)'s__Thainycteris aureocollaris':0.00082)sf__Vespertilioninae:0.00010)c__Mammalia:0.00006,((('ABRSS334-06':0.00031,('ABBID022-09':0.00008,'ABBID040-09':0.00010)'s__Kerivoula papillosa':0.00019)g__Kerivoula:0.00050,(('ABRSS336-06':0.00000,'ABRSS371-06':0.00002)'s__Kerivoula cf. papillosa':0.00067,('ABBM113-05':0.00002,('ABBSI226-10':0.00001,('ABBM180-05':0.00000,('ABBM122-05':-0.00001,'ABRVN363-06':0.00003)g__Kerivoula:0.00000)g__Kerivoula:0.00001)g__Kerivoula:0.00001)g__Kerivoula:0.00049)g__Kerivoula:0.00009)g__Kerivoula:0.00027,(((('ABBM060-05':-0.00001,'ABBM052-05':0.00018)'s__Kerivoula minuta':0.00002,('ABBTH121-07':0.00001,'ABRSS347-06':0.00004)'s__Kerivoula minuta':0.00001)'s__Kerivoula minuta':0.00076,((('ABRLA075-06':0.00001,('ABBM264-05':0.00004,('ABBM329-05':0.00000,'ABBM239-05':0.00000)'s__Kerivoula kachinensis':0.00001)'s__Kerivoula kachinensis':0.00001)'s__Kerivoula kachinensis':0.00079,((('ABCMA366-06':0.00001,'ABCMA449-06':0.00001)'s__Kerivoula cf. hardwickii':0.00005,(('ABCMA603-07':0.00001,('ABCMA419-06':0.00000,'ABCMA448-06':0.00000)'s__Kerivoula cf. hardwickii':0.00001)'s__Kerivoula cf. hardwickii':0.00002,(('ABCMA452-06':0.00000,'ABCMA393-06':0.00000)'s__Kerivoula cf. hardwickii':0.00002,('ABCMA342-06':0.00004,('ABCMA392-06':0.00000,'ABCMA365-06':0.00000)'s__Kerivoula cf. hardwickii':0.00003)'s__Kerivoula cf. hardwickii':0.00001)'s__Kerivoula cf. hardwickii':0.00000)'s__Kerivoula cf. hardwickii':0.00003)'s__Kerivoula cf. hardwickii':0.00044,(('ABBSI163-09':0.00008,'ABRVN349-06':0.00007)'s__Kerivoula hardwickii':0.00024,(('ABBM220-05':0.00001,'ABBM219-05':0.00007)'s__Kerivoula cf. hardwickii':0.00005,('ABRVN488-06':0.00002,(((('ABRVN468-06':0.00000,'ABRVN471-06':0.00000)'s__Kerivoula cf. hardwickii':0.00000,('ABRVN473-06':0.00000,'ABRVN474-06':0.00000)'s__Kerivoula cf. hardwickii':0.00000)'s__Kerivoula cf. hardwickii':0.00000,(('ABRVN475-06':0.00000,'ABRVN542-06':0.00000)'s__Kerivoula cf. hardwickii':0.00000,('ABRVN469-06':0.00000,'ABRVN541-06':0.00000)'s__Kerivoula cf. hardwickii':0.00000)'s__Kerivoula cf. hardwickii':0.00000)'s__Kerivoula cf. hardwickii':0.00002,(('ABRVN472-06':0.00000,('ABRVN476-06':0.00000,'ABRVN477-06':0.00000)'s__Kerivoula cf. hardwickii':0.00000)'s__Kerivoula cf. hardwickii':0.00000,(('ABRVN478-06':0.00000,'ABRVN519-06':0.00000)'s__Kerivoula cf. hardwickii':0.00000,('ABRVN489-06':0.00000,'ABRVN470-06':0.00000)'s__Kerivoula cf. hardwickii':0.00000)'s__Kerivoula cf. hardwickii':0.00000)'s__Kerivoula cf. hardwickii':0.00001)'s__Kerivoula cf. hardwickii':0.00001)'s__Kerivoula cf. hardwickii':0.00002)'s__Kerivoula cf. hardwickii':0.00038)g__Kerivoula:0.00007)g__Kerivoula:0.00009)g__Kerivoula:0.00013,(('ABBID001-08':0.00005,'ABBID064-09':0.00013)'s__Kerivoula krauensis':0.00054,('ABBTH137-07':0.00016,(('ABBM372-05':0.00006,(('ABBM249-05':0.00000,'ABRLA045-06':0.00000)'s__Kerivoula cf. hardwickii':0.00001,('ABRLA051-06':0.00001,'ABBM265-05':0.00002)'s__Kerivoula cf. hardwickii':0.00001)'s__Kerivoula cf. hardwickii':0.00001)'s__Kerivoula cf. hardwickii':0.00012,('ABBM164-05':0.00004,(('ABBM144-05':0.00002,'ABBM207-05':0.00004)'s__Kerivoula cf. hardwickii':0.00008,('ABRLA096-06':0.00004,('ABBM176-05':0.00001,'ABBM109-05':0.00004)'s__Kerivoula cf. hardwickii':0.00001)g__Kerivoula:0.00001)g__Kerivoula:0.00002)g__Kerivoula:0.00012)g__Kerivoula:0.00006)g__Kerivoula:0.00048)g__Kerivoula:0.00012)g__Kerivoula:0.00007)g__Kerivoula:0.00003,('ABBID020-09':0.00052,(('ABRSS370-06':0.00001,(('ABBTH034-07':0.00000,('ABBTH003-07':0.00000,'ABBTH113-07':0.00000)'s__Kerivoula hardwickii':0.00002)'s__Kerivoula hardwickii':0.00001,('ABBTH025-07':0.00001,('ABBTH001-07':0.00002,'ABBM053-05':0.00004)g__Kerivoula:0.00012)g__Kerivoula:0.00001)g__Kerivoula:0.00003)g__Kerivoula:0.00003,((('ABRLA159-06':0.00000,'ABRLA149-06':0.00002)'s__Kerivoula cf. hardwickii':0.00002,(('ABBM055-05':0.00000,Query:0.00000)'s__Kerivoula cf. hardwickii':0.00007,(('ABBSI202-10':0.00000,('ABRVN365-06':0.00000,'ABRVN364-06':0.00000)'s__Kerivoula cf. hardwickii':0.00000)g__Kerivoula:0.00002,('ABRVN350-06':0.00000,'ABRVN340-06':0.00000)'s__Kerivoula cf. hardwickii':0.00002)g__Kerivoula:0.00001)g__Kerivoula:0.00001)g__Kerivoula:0.00002,(('ABBSI320-11':0.00002,'ABBSI324-11':0.00000)'s__Kerivoula hardwickii':0.00000,('ABBSI321-11':0.00000,(('ABBSI322-11':0.00000,'ABBSI325-11':0.00000)'s__Kerivoula hardwickii':0.00000,('ABBSI326-11':0.00000,'ABBSI323-11':0.00000)'s__Kerivoula hardwickii':0.00000)'s__Kerivoula hardwickii':0.00000)'s__Kerivoula hardwickii':0.00000)'s__Kerivoula hardwickii':0.00002)g__Kerivoula:0.00002)g__Kerivoula:0.00041)g__Kerivoula:0.00017)g__Kerivoula:0.00001)g__Kerivoula:0.00002)c__Mammalia,(('ABBWP065-06':0.00089,'ABBM320-05':0.00098)f__Vespertilionidae:0.00010,('ABBID023-09':0.00080,('ABFG389-10':0.00091,(('ABCMA190-06':0.00000,'ABCMA199-06':0.00000)'s__Myotis ikonnikovi':0.00000,('ABCMA198-06':0.00000,'ABCMA197-06':0.00000)'s__Myotis ikonnikovi':0.00000)'s__Myotis ikonnikovi':0.00099)'s__Myotis ikonnikovi':0.00004)f__Vespertilionidae:0.00003)f__Vespertilionidae:0.00002)c__Mammalia;";
+
+// Kew trees have "-" in the labels, which breaks NEXUS-based label parsers
+$newick = file_get_contents('7371.tree'); 
+$newick = file_get_contents('treeoflife.current.tree');
 
 $t = parse_newick($newick);
+
+//echo $t->WriteNewick() . "\n";
+//exit();
 
 // we want some space under the root, but need to do this intellgently
 if ($t->GetRoot()->GetAttribute('edge_length') == 0)
 {
 	$t->GetRoot()->SetAttribute('edge_length', 0.1);
+	$t->GetRoot()->SetAttribute('edge_length', 0.001);
 }
 
 
@@ -61,8 +95,84 @@ $t->BuildWeights($t->GetRoot());
 $o = new RightOrder($t);
 $o->Order();
 
+if (!$t->HasBranchLengths())
+{
+	cladogram_to_branch_lengths($t);
+	
+	// think about classification
+	
+	// Kew
+	$rank_level = 0;
+	
+	$node_classification = array();
+	
+	$n = new NodeIterator ($t->GetRoot());
+	$q = $n->Begin();
+	while ($q != NULL)
+	{
+		if ($q->IsLeaf())
+		{
+			$labels = explode('_', $q->GetLabel());
+			$node_classification[$q->GetId()] = array($labels[$rank_level]);
+		}
+		else
+		{
+			$node_classification[$q->GetId()] = array();
+		}
+		$q = $n->Next();
+	}
+	
+	foreach ($node_classification as $id => $set)
+	{
+		echo $id . ' ' . join(',', $set) . "\n";		
+	}
+	
+	$q = $n->Begin();
+	while ($q != NULL)
+	{
+		$anc = $q->GetAncestor();
+		if ($anc)
+		{
+			$node_classification[$anc->GetId()] = array_unique(array_merge($node_classification[$anc->GetId()], $node_classification[$q->GetId()]));				
+		}
+		$q = $n->Next();
+	}
+	
+	foreach ($node_classification as $id => &$set)
+	{
+		echo $id . ' ' . join(',', $set) . "\n";		
+	}
+	//exit();
+	
+	$q = $n->Begin();
+	while ($q != NULL)
+	{
+		if (!$q->IsLeaf())
+		{	
+			if (count($node_classification[$q->GetId()]) == 1)
+			{
+				$q->SetLabel($node_classification[$q->GetId()][0]);
+			}
+			else
+			{
+				$q->SetLabel('');
+			}
+		}
+		$q = $n->Next();
+	}
+	
+	
+	// apply labels to internal nodes
+
+	//echo $t->WriteNewick() . "\n";
+	
+	//exit();
+	
+}
 
 get_node_heights($t, $drawing_options->tree_width);
+
+
 get_max_subtree_height($t);
 
 // draw all nodes, each in a separate file
@@ -162,6 +272,65 @@ foreach ($node_types as $type)
 		$pt2 = $q->GetAttribute('xy');
 		$pt2['y'] = $y_offset;
 		
+		// draw these first so that nodes themselves will be drawn on top of any lines
+		
+		// horizontal line to ancestor
+		$anc = $q->GetAncestor();
+		if ($anc)
+		{
+				$pt = $anc->GetAttribute('xy');
+				$pt3 = array('x' => $pt['x'], 'y' => $y_offset);					
+				$port->DrawLine($pt2, $pt3);
+			
+				// Decide on joining style				
+				$style = 0;
+				if ($q->IsChild())
+				{
+					$style = 0;
+				}
+				else
+				{
+					if ($q->GetSibling())
+					{
+						$style = 1;
+					}
+					else
+					{
+						$style = 2;
+					}
+				}
+			
+				switch ($style)
+				{
+					// LEFT
+					case 0:
+						$pt4 = $pt3;
+						$pt4['y'] += $y_offset;			
+						$port->DrawLine($pt3, $pt4);
+						break;
+
+					// MIDDLE
+					case 1:
+						$pt4 = $pt3;
+						$pt3['y'] -= $y_offset;
+						$pt4['y'] += $y_offset;			
+						$port->DrawLine($pt3, $pt4);
+						break;
+
+					// RIGHT
+					case 2:
+						$pt4 = $pt3;
+						$pt4['y'] -= $y_offset;			
+						$port->DrawLine($pt3, $pt4);
+						break;
+		
+					default:
+						break;
+				}
+		
+		}		
+		
+		
 		// Different node types have different drawings
 		switch ($type)
 		{
@@ -257,61 +426,6 @@ foreach ($node_types as $type)
 		
 		}
 				
-		// horizontal line to ancestor
-		$anc = $q->GetAncestor();
-		if ($anc)
-		{
-				$pt = $anc->GetAttribute('xy');
-				$pt3 = array('x' => $pt['x'], 'y' => $y_offset);					
-				$port->DrawLine($pt2, $pt3);
-			
-				// Decide on joining style				
-				$style = 0;
-				if ($q->IsChild())
-				{
-					$style = 0;
-				}
-				else
-				{
-					if ($q->GetSibling())
-					{
-						$style = 1;
-					}
-					else
-					{
-						$style = 2;
-					}
-				}
-			
-				switch ($style)
-				{
-					// LEFT
-					case 0:
-						$pt4 = $pt3;
-						$pt4['y'] += $y_offset;			
-						$port->DrawLine($pt3, $pt4);
-						break;
-
-					// MIDDLE
-					case 1:
-						$pt4 = $pt3;
-						$pt3['y'] -= $y_offset;
-						$pt4['y'] += $y_offset;			
-						$port->DrawLine($pt3, $pt4);
-						break;
-
-					// RIGHT
-					case 2:
-						$pt4 = $pt3;
-						$pt4['y'] -= $y_offset;			
-						$port->DrawLine($pt3, $pt4);
-						break;
-		
-					default:
-						break;
-				}
-		
-		}		
 		
 		// what crossings do we need to fill in?
 		foreach ($order_to_crossings[$i] as $cross)

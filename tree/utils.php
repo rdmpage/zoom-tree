@@ -144,7 +144,7 @@ function info_score ($q)
 // Compite score for node
 function score_node($q)
 {
-	if (1)
+	if (0)
 	{
 		$score = info_score($q);
 	}
@@ -402,6 +402,75 @@ function add_children_to_subtree(&$subtree, $q, $is_root = false)
 	*/
 	
 }
+
+//----------------------------------------------------------------------------------------
+// Given a tree with no branch lengths (e.g., a cladogram) compute arbitrary values with
+// with the shortest having the value "1"
+function cladogram_to_branch_lengths($t)
+{
+	if ($t->HasBranchLengths()) return;
+
+	// Clear depth
+	$n = new PreorderIterator ($t->GetRoot());
+	$q = $n->Begin();
+	while ($q != NULL)
+	{	
+		$q->SetAttribute('depth', 0);
+		$q = $n->Next();
+	}
+
+	// Compute depth (maximum length of a path that goes through this node to the root)
+	// all leaves have depth = 0, the root has maximum value of depth
+	$max_depth = 0;
+	$q = $n->Begin();
+	while ($q != NULL)
+	{	
+		if ($q->IsLeaf())
+		{
+			$p = $q->GetAncestor();
+			$count = 1;
+			while ($p)
+			{
+				if ($count > $p->GetAttribute('depth'))
+				{
+					$p->SetAttribute('depth', $count);
+					$max_depth = max($max_depth, $count);
+				}
+				$count++;
+				$p = $p->GetAncestor();
+			}
+							
+		}
+	
+		$q = $n->Next();
+	}
+
+	// Convert depths to heights, such that root has height 0, and leaves all have the
+	// maximum height
+	$q = $n->Begin();
+	while ($q != NULL)
+	{	
+		$q->SetAttribute('height', $max_depth - $q->GetAttribute('depth'));
+		$q = $n->Next();
+	}
+
+	// Edge lengths are the differences in height between a node and its ancestor
+	$q = $n->Begin();
+	while ($q != NULL)
+	{	
+		if ($q->GetAncestor())
+		{
+			$q->SetAttribute('edge_length', $q->GetAttribute('height') - $q->GetAncestor()->GetAttribute('height'));
+		}
+		else
+		{
+			$q->SetAttribute('edge_length', 1);
+		}
+		$q = $n->Next();
+	}
+
+}
+
 
 
 

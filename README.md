@@ -1,8 +1,59 @@
 # Zoomable view of a phylogenetic tree
 
+## To do:
+
+- Solve labelling higher node problem (cf Greengenes)
+- Solve display of labels between zoom levels
+- Solve pagination for large trees
+- Profit
+
+## How to use
 
 `php rows.php` generates the SVG files for each node, one for leaves and two (open and closed) for internals.
 
+## Prior art
+
+https://onlinelibrary.wiley.com/doi/10.1111/jse.12722
+
+## Good examples
+
+### Proposal of names for 329 higher rank taxa defined in the Genome Taxonomy Database under two prokaryotic codes 
+
+https://academic.oup.com/femsle/article/doi/10.1093/femsle/fnad071/7227913?login=false
+
+https://data.gtdb.ecogenomic.org/releases/release202/202.0/
+
+`ar122_r202.tree` has internal node labels that include numerical values (what do these represent?), and also classification strings with rank prefix, e.g. `p__`.
+
+
+## Taxonomy applied to trees
+
+McDonald et al. uses idea of  prefix for taxon name based on rank, see also https://twitter.com/philhugenholtz/status/1690669546083102720?s=61&t=StTEWi15D5PZTnrTvBrRIw
+
+There is also code for labelling a tree https://github.com/biocore/tax2tree. It is Python 2 and doesn’t work on my machine. Note that the example provided is supposed to reproduce Fig 1 in McDonald et al., but doesn’t as it lacks all the nodes :(
+
+Actual data:
+
+Tree
+```
+(((A,B),(C,D),(E,F)),(G,H),((I,J),(K,L)));
+```
+
+Classification
+```
+A f__Lachnospiraceae; g__Clostridium; s__
+B Unclassified
+C f__Lachnospiraceae; g__Clostridium; s__
+D f__Lachnospiraceae; g__Clostridium; s__
+E f__Lachnospiraceae; g__Clostridium; s__
+F f__Lachnospiraceae; g__Clostridium; s__
+G f__Lachnospiraceae; g__Dorea; s__
+H f__Lachnospiraceae; g__Dorea;s__
+I f__Lachnospiraceae; g__Clostridium; s__Clostridium bolteae
+J f__Lachnospiraceae; g__Clostridium; s__Clostridium bolteae
+K f__Lachnospiraceae; g__Clostridium; s__Clostridium hylemonae
+L f__Lachnospiraceae; g__Clostridium; s__Clostridium hylemonae
+```
 
 
 ## Overview
@@ -20,6 +71,21 @@
 
 
 ## Notes
+
+### 2023-09-12
+
+Legume tree I used for GBIF blog post is available on Zenodo https://doi.org/10.5281/zenodo.7568715 via email from Jens Ringelberg
+
+### 2023-08-11
+
+Labelling is a challenge. There are several scenarios:
+
+- tree has no internal labels (what do we do)?
+- tree has support labels, e.g. bootstrap (effectively no labels)
+- tree has user supplied labels for some/all nodes
+- we have taxonomic classification we can use to label the tree
+
+Need to figure out how to usefully label the tree, and how we display labels as zoom levels change.
 
 ### 2023-07-07
 
@@ -126,11 +192,19 @@ See for example “PhyloGeoTool: interactively exploring large phylogenies in an
 
 Essentially the same idea is presented in Zaslavsky et al., who also have some nice ideas on representing within-collapsed clade structure.
 
+## References
+
+> Dalevi, D., DeSantis, T.Z., Fredslund, J. et al. Automated group assignment in large phylogenetic trees using GRUNT: GRouping, Ungrouping, Naming Tool. BMC Bioinformatics 8, 402 (2007). https://doi.org/10.1186/1471-2105-8-402
+
 > Jin Chen, MacEachren, A. M., & Peuquet, D. J. (2009). Constructing Overview + Detail Dendrogram-Matrix Views. IEEE Transactions on Visualization and Computer Graphics, 15(6), 889–896. https://doi.org/10.1109/tvcg.2009.130
 
 > Kozlov, A. M., Zhang, J., Yilmaz, P., Glöckner, F. O., & Stamatakis, A. (2016). Phylogeny-aware identification and correction of taxonomically mislabeled sequences. Nucleic acids research, 44(11), 5022–5033. https://doi.org/10.1093/nar/gkw396
 
 > Libin, P., Vanden Eynden, E., Incardona, F., Nowé, A., Bezenchek, A., … Sönnerborg, A. (2017). PhyloGeoTool: interactively exploring large phylogenies in an epidemiological context. Bioinformatics, 33(24), 3993–3995. doi:10.1093/bioinformatics/btx535
+
+> Matsen FA, Hoffman NG, Gallagher A, Stamatakis A (2012) A Format for Phylogenetic Placements. PLoS ONE 7(2): e31009. https://doi.org/10.1371/journal.pone.0031009
+
+> McDonald, D., Price, M., Goodrich, J. et al. An improved Greengenes taxonomy with explicit ranks for ecological and evolutionary analyses of bacteria and archaea. ISME J 6, 610–618 (2012). https://doi.org/10.1038/ismej.2011.139
 
 > Tennekes, M., & de Jonge, E. (2014). Tree Colors: Color Schemes for Tree-Structured Data. IEEE Transactions on Visualization and Computer Graphics, 20(12), 2072–2081. doi:10.1109/tvcg.2014.2346277
 
